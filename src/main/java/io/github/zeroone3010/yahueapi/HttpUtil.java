@@ -26,23 +26,23 @@ final class HttpUtil {
 
   private static String getString(final URL baseUrl, final String path, final String body, final String method) {
     try {
-      URL url = new URL(baseUrl.toString() + path);
-      HttpsURLConnection connection = (HttpsURLConnection) url.openConnection();
+      var url = new URL(baseUrl.toString() + path);
+      var connection = (HttpsURLConnection) url.openConnection();
 
       connection.setDoOutput(true);
       connection.setRequestMethod(method);
       connection.setRequestProperty("Host", connection.getURL().getHost());
 
       if (body != null) {
-        try (final OutputStream outputStream = connection.getOutputStream()) {
-          try (final OutputStreamWriter writer = new OutputStreamWriter(outputStream, UTF_8)) {
+        try (var outputStream = connection.getOutputStream()) {
+          try (var writer = new OutputStreamWriter(outputStream, UTF_8)) {
             writer.write(body);
             writer.flush();
           }
         }
       }
       connection.connect();
-      try (final BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+      try (var reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
         return reader.lines().collect(Collectors.joining("\n"));
       }
     } catch (final IOException e) {
