@@ -49,10 +49,10 @@ dependencies {
 Here's a simple example to get you started - discover your bridge and turn on a light:
 
 ```java
-import io.github.zeroone3010.yahueapi.HueBridge;
-import io.github.zeroone3010.yahueapi.HueBridgeConnectionBuilder;
-import io.github.zeroone3010.yahueapi.v2.Hue;
-import io.github.zeroone3010.yahueapi.discovery.HueBridgeDiscoveryService;
+import io.github.greenstevester.heuvana.HueBridge;
+import io.github.greenstevester.heuvana.HueBridgeConnectionBuilder;
+import io.github.greenstevester.heuvana.v2.Hue;
+import io.github.greenstevester.heuvana.discovery.HueBridgeDiscoveryService;
 import java.util.List;
 import java.util.concurrent.Future;
 
@@ -78,13 +78,13 @@ First, import the classes from this library (and some others too):
 
 [//]: # (imports)
 ```java
-import io.github.zeroone3010.yahueapi.Color;
-import io.github.zeroone3010.yahueapi.HueBridge;
-import io.github.zeroone3010.yahueapi.HueBridgeConnectionBuilder;
-import io.github.zeroone3010.yahueapi.v2.Hue;
-import io.github.zeroone3010.yahueapi.v2.Light;
-import io.github.zeroone3010.yahueapi.v2.Group;
-import io.github.zeroone3010.yahueapi.discovery.HueBridgeDiscoveryService;
+import io.github.greenstevester.heuvana.Color;
+import io.github.greenstevester.heuvana.HueBridge;
+import io.github.greenstevester.heuvana.HueBridgeConnectionBuilder;
+import io.github.greenstevester.heuvana.v2.Hue;
+import io.github.greenstevester.heuvana.v2.Light;
+import io.github.greenstevester.heuvana.v2.Group;
+import io.github.greenstevester.heuvana.discovery.HueBridgeDiscoveryService;
 
 import java.util.List;
 import java.util.Map;
@@ -148,7 +148,7 @@ final Hue hue = new Hue(bridgeIp, key);
 
 #### A note on setting colors
 
-When setting the color of a light or a room, one must use the `io.github.zeroone3010.yahueapi.Color` class.
+When setting the color of a light or a room, one must use the `io.github.greenstevester.heuvana.Color` class.
 There exists several ways to initialize the class using its
 factory methods. `Color.of(int)` accepts a color code as an integer of the typical `0xRRGGBB` format.
 You may get an integer like this from, for example, from the `java.awt.Color#getRGB()` method.

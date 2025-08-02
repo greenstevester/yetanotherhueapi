@@ -9,9 +9,9 @@ huevana is a Java 17 library for controlling Philips Hue lights via the Bridge R
 ## Key Architecture Components
 
 ### Core API Structure
-- **Main Entry Point**: `io.github.greenstevester.yahueapi.v2.Hue` - Primary class for initializing and managing Bridge connections
-- **Bridge Discovery**: `io.github.greenstevester.yahueapi.discovery.HueBridgeDiscoveryService` - Automatic Bridge discovery via N-UPnP and mDNS
-- **Connection Builder**: `io.github.greenstevester.yahueapi.HueBridgeConnectionBuilder` - Handles API key initialization and HTTPS setup
+- **Main Entry Point**: `v2.io.github.greenstevester.heuvana.Hue` - Primary class for initializing and managing Bridge connections
+- **Bridge Discovery**: `discovery.io.github.greenstevester.heuvana.HueBridgeDiscoveryService` - Automatic Bridge discovery via N-UPnP and mDNS
+- **Connection Builder**: `io.github.greenstevester.heuvana.HueBridgeConnectionBuilder` - Handles API key initialization and HTTPS setup
 
 ### Device Abstraction Layer
 The library uses factory patterns for device creation:

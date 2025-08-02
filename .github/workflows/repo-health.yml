@@ -1,10 +1,50 @@
+# Repository Health Check Workflow
+#
+# This workflow performs a comprehensive health assessment of the repository,
+# analyzing code quality, dependencies, security, and project metrics.
+#
+# USAGE:
+# 1. Go to Actions tab in GitHub
+# 2. Select "Repository Health Check" workflow
+# 3. Click "Run workflow" button
+# 4. Configure options:
+#    - Generate Issue: Creates/updates a GitHub issue with results (default: true)
+#    - Severity Threshold: Minimum health score to avoid warnings (default: 70)
+#
+# WHAT IT CHECKS:
+# - Repository metrics (commits, contributors, code size)
+# - Open issues and pull requests
+# - Outdated dependencies and plugins
+# - Security vulnerabilities (OWASP dependency check)
+# - Test coverage (JaCoCo)
+# - Calculates overall health score (0-100)
+#
+# OUTPUTS:
+# - GitHub issue with detailed health report (if enabled)
+# - Workflow artifacts with detailed reports
+# - Action summary with key metrics
+#
+# WHEN TO USE:
+# - Before releases to ensure repository health
+# - After major dependency updates
+# - Monthly/quarterly health assessments
+# - When investigating project maintenance needs
+
 name: Repository Health Check
 
 on:
-  schedule:
-    # Run weekly on Sundays at 6 AM UTC
-    - cron: '0 6 * * 0'
   workflow_dispatch:
+    inputs:
+      generate_issue:
+        description: 'Create/update GitHub issue with results'
+        required: false
+        default: true
+        type: boolean
+      severity_threshold:
+        description: 'Minimum health score to avoid warnings (0-100)'
+        required: false
+        default: '70'
+        type: string
 
 permissions:
   contents: read
@@ -214,6 +254,7 @@ jobs:
         retention-days: 30
     
     - name: Create or update health issue
+      if: ${{ inputs.generate_issue }}
       uses: actions/github-script@v7
       with:
         script: |
@@ -240,27 +281,62 @@ jobs:
               title: title,
               body: healthReport
             });
+            console.log(`Updated existing health check issue #${issues.data[0].number}`);
           } else {
             // Create new issue
-            await github.rest.issues.create({
+            const issue = await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
               title: title,
               body: healthReport,
               labels: ['health-check', 'automated']
             });
+            console.log(`Created new health check issue #${issue.data.number}`);
           }
     
     - name: Create summary
       run: |
-        echo "# Repository Health Check Complete" >> $GITHUB_STEP_SUMMARY
+        HEALTH_SCORE=${{ steps.report.outputs.health-score }}
+        THRESHOLD=${{ inputs.severity_threshold || '70' }}
+        
+        echo "# 🏥 Repository Health Check Complete" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
-        echo "**Health Score: ${{ steps.report.outputs.health-score }}/100**" >> $GITHUB_STEP_SUMMARY
+        
+        if [ "$HEALTH_SCORE" -ge 90 ]; then
+          echo "## 🟢 Excellent Health!" >> $GITHUB_STEP_SUMMARY
+        elif [ "$HEALTH_SCORE" -ge "$THRESHOLD" ]; then
+          echo "## 🟡 Good Health" >> $GITHUB_STEP_SUMMARY
+        elif [ "$HEALTH_SCORE" -ge 50 ]; then
+          echo "## 🟠 Fair Health - Needs Attention" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "## 🔴 Poor Health - Immediate Action Required!" >> $GITHUB_STEP_SUMMARY
+        fi
+        
         echo "" >> $GITHUB_STEP_SUMMARY
-        echo "Key metrics:" >> $GITHUB_STEP_SUMMARY
-        echo "- Outdated dependencies: ${{ steps.dependencies.outputs.outdated-dependencies }}" >> $GITHUB_STEP_SUMMARY
-        echo "- Security vulnerabilities: ${{ steps.security.outputs.vulnerabilities }}" >> $GITHUB_STEP_SUMMARY
-        echo "- Test coverage: ${{ steps.coverage.outputs.coverage }}%" >> $GITHUB_STEP_SUMMARY
-        echo "- Open issues: ${{ steps.metrics.outputs.open-issues }}" >> $GITHUB_STEP_SUMMARY
+        echo "**Overall Score: $HEALTH_SCORE/100** (Threshold: $THRESHOLD)" >> $GITHUB_STEP_SUMMARY
         echo "" >> $GITHUB_STEP_SUMMARY
-        echo "See artifacts for detailed reports."
+        
+        echo "### 📊 Key Metrics" >> $GITHUB_STEP_SUMMARY
+        echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
+        echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+        echo "| Outdated Dependencies | ${{ steps.dependencies.outputs.outdated-dependencies }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Security Vulnerabilities | ${{ steps.security.outputs.vulnerabilities }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Test Coverage | ${{ steps.coverage.outputs.coverage }}% |" >> $GITHUB_STEP_SUMMARY
+        echo "| Open Issues | ${{ steps.metrics.outputs.open-issues }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Contributors | ${{ steps.metrics.outputs.contributors }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Java Files | ${{ steps.metrics.outputs.java-files }} |" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        echo "### 📋 Next Steps" >> $GITHUB_STEP_SUMMARY
+        if [ "${{ inputs.generate_issue }}" = "true" ]; then
+          echo "- ✅ Health report issue created/updated" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "- ℹ️  Issue generation was disabled" >> $GITHUB_STEP_SUMMARY
+        fi
+        echo "- 📁 Download detailed reports from workflow artifacts" >> $GITHUB_STEP_SUMMARY
+        echo "- 🔍 Review recommendations in the health report" >> $GITHUB_STEP_SUMMARY
+        
+        if [ "$HEALTH_SCORE" -lt "$THRESHOLD" ]; then
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "⚠️ **Health score is below threshold ($THRESHOLD). Consider addressing the issues identified.**" >> $GITHUB_STEP_SUMMARY
+        fi
