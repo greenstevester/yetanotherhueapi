@@ -1,25 +1,25 @@
-package io.github.zeroone3010.yahueapi.v2;
+package io.github.greenstevester.yahueapi.v2;
 
-import io.github.zeroone3010.yahueapi.Color;
-import io.github.zeroone3010.yahueapi.XAndYAndBrightness;
-import io.github.zeroone3010.yahueapi.v2.domain.Xy;
-import io.github.zeroone3010.yahueapi.v2.domain.update.Alert;
-import io.github.zeroone3010.yahueapi.v2.domain.update.AlertType;
-import io.github.zeroone3010.yahueapi.v2.domain.update.Dimming;
-import io.github.zeroone3010.yahueapi.v2.domain.update.EffectType;
-import io.github.zeroone3010.yahueapi.v2.domain.update.Effects;
-import io.github.zeroone3010.yahueapi.v2.domain.update.Gradient;
-import io.github.zeroone3010.yahueapi.v2.domain.update.GradientPoint;
-import io.github.zeroone3010.yahueapi.v2.domain.update.TimedEffectType;
-import io.github.zeroone3010.yahueapi.v2.domain.update.TimedEffects;
-import io.github.zeroone3010.yahueapi.v2.domain.update.UpdateLight;
+import io.github.greenstevester.yahueapi.Color;
+import io.github.greenstevester.yahueapi.XAndYAndBrightness;
+import io.github.greenstevester.yahueapi.v2.domain.Xy;
+import io.github.greenstevester.yahueapi.v2.domain.update.Alert;
+import io.github.greenstevester.yahueapi.v2.domain.update.AlertType;
+import io.github.greenstevester.yahueapi.v2.domain.update.Dimming;
+import io.github.greenstevester.yahueapi.v2.domain.update.EffectType;
+import io.github.greenstevester.yahueapi.v2.domain.update.Effects;
+import io.github.greenstevester.yahueapi.v2.domain.update.Gradient;
+import io.github.greenstevester.yahueapi.v2.domain.update.GradientPoint;
+import io.github.greenstevester.yahueapi.v2.domain.update.TimedEffectType;
+import io.github.greenstevester.yahueapi.v2.domain.update.TimedEffects;
+import io.github.greenstevester.yahueapi.v2.domain.update.UpdateLight;
 
 import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static io.github.zeroone3010.yahueapi.v2.domain.update.On.OFF;
-import static io.github.zeroone3010.yahueapi.v2.domain.update.On.ON;
+import static io.github.greenstevester.yahueapi.v2.domain.update.On.OFF;
+import static io.github.greenstevester.yahueapi.v2.domain.update.On.ON;
 
 public class UpdateState {
 
@@ -88,7 +88,7 @@ public class UpdateState {
    */
   public UpdateState color(final Color color) {
     final XAndYAndBrightness xy = XAndYAndBrightness.rgbToXy(color);
-    updateLight.setColor(new io.github.zeroone3010.yahueapi.v2.domain.update.Color()
+    updateLight.setColor(new io.github.greenstevester.yahueapi.v2.domain.update.Color()
             .setXy(new Xy().setX(xy.getX()).setY(xy.getY())))
         .setDimming(new Dimming().setBrightness(xy.getBrightnessMax100()));
     return this;
@@ -103,7 +103,7 @@ public class UpdateState {
    * @see #color(Color)
    */
   public UpdateState xy(final float x, final float y) {
-    updateLight.setColor(new io.github.zeroone3010.yahueapi.v2.domain.update.Color().setXy(new Xy().setX(x).setY(y)));
+    updateLight.setColor(new io.github.greenstevester.yahueapi.v2.domain.update.Color().setXy(new Xy().setX(x).setY(y)));
     return this;
   }
 
@@ -193,7 +193,7 @@ public class UpdateState {
     final List<GradientPoint> gradientPoints = colors.stream()
         .map(color -> {
           final XAndYAndBrightness xy = XAndYAndBrightness.rgbToXy(color);
-          return new io.github.zeroone3010.yahueapi.v2.domain.update.Color()
+          return new io.github.greenstevester.yahueapi.v2.domain.update.Color()
               .setXy(new Xy().setX(xy.getX()).setY(xy.getY()));
         })
         .map(color -> new GradientPoint().setColor(color))

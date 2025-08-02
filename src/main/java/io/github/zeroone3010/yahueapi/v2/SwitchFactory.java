@@ -1,11 +1,11 @@
-package io.github.zeroone3010.yahueapi.v2;
+package io.github.greenstevester.yahueapi.v2;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.zeroone3010.yahueapi.HueApiException;
-import io.github.zeroone3010.yahueapi.v2.domain.ButtonResource;
-import io.github.zeroone3010.yahueapi.v2.domain.ButtonResourceRoot;
-import io.github.zeroone3010.yahueapi.v2.domain.DeviceResource;
-import io.github.zeroone3010.yahueapi.v2.domain.ResourceIdentifier;
+import io.github.greenstevester.yahueapi.HueApiException;
+import io.github.greenstevester.yahueapi.v2.domain.ButtonResource;
+import io.github.greenstevester.yahueapi.v2.domain.ButtonResourceRoot;
+import io.github.greenstevester.yahueapi.v2.domain.DeviceResource;
+import io.github.greenstevester.yahueapi.v2.domain.ResourceIdentifier;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,7 +14,7 @@ import java.util.UUID;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
 
-import static io.github.zeroone3010.yahueapi.v2.domain.ResourceType.BUTTON;
+import static io.github.greenstevester.yahueapi.v2.domain.ResourceType.BUTTON;
 import static java.util.stream.Collectors.toMap;
 
 public class SwitchFactory {

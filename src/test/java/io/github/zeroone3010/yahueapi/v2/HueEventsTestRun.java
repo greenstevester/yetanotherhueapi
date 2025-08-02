@@ -1,7 +1,7 @@
-package io.github.zeroone3010.yahueapi.v2;
+package io.github.greenstevester.yahueapi.v2;
 
-import io.github.zeroone3010.yahueapi.v2.domain.event.ButtonEvent;
-import io.github.zeroone3010.yahueapi.v2.domain.event.MotionEvent;
+import io.github.greenstevester.yahueapi.v2.domain.event.ButtonEvent;
+import io.github.greenstevester.yahueapi.v2.domain.event.MotionEvent;
 
 import java.util.concurrent.TimeUnit;
 

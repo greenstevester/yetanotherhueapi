@@ -1,4 +1,4 @@
-package io.github.zeroone3010.yahueapi.discovery;
+package io.github.greenstevester.yahueapi.discovery;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import io.github.zeroone3010.yahueapi.HueBridge;
+import io.github.greenstevester.yahueapi.HueBridge;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

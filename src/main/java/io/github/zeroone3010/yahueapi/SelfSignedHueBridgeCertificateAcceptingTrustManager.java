@@ -1,4 +1,4 @@
-package io.github.zeroone3010.yahueapi;
+package io.github.greenstevester.yahueapi;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +12,7 @@ import java.security.cert.X509Certificate;
  * maintaining regular validation for other certificates.
  */
 public class SelfSignedHueBridgeCertificateAcceptingTrustManager implements X509TrustManager {
-  private static final Logger logger = LoggerFactory.getLogger("io.github.zeroone3010.yahueapi");
+  private static final Logger logger = LoggerFactory.getLogger("io.github.greenstevester.yahueapi");
 
   public static final String PHILIPS_HUE_CERTIFICATE_ORGANIZATION = "O=Philips Hue,";
   private final X509TrustManager trustManager;

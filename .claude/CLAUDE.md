@@ -23,15 +23,15 @@ YetAnotherHueApi is a Java 17 library for controlling Philips Hue lights via the
 ## Architecture Overview
 
 ### Package Structure
-- `io.github.zeroone3010.yahueapi` - Legacy API (v1) classes for backward compatibility
-- `io.github.zeroone3010.yahueapi.v2` - Modern API (v2) implementation using Philips Hue API v2
+- `io.github.greenstevester.yahueapi` - Legacy API (v1) classes for backward compatibility
+- `io.github.greenstevester.yahueapi.v2` - Modern API (v2) implementation using Philips Hue API v2
   - Main entry point: `Hue` class
   - Factory classes for creating domain objects (LightFactory, GroupFactory, etc.)
   - Implementation classes (*Impl) for domain interfaces
-- `io.github.zeroone3010.yahueapi.v2.domain` - Domain objects representing Hue API resources
+- `io.github.greenstevester.yahueapi.v2.domain` - Domain objects representing Hue API resources
   - Resource classes for API responses
   - `update` subpackage for update/command objects
-- `io.github.zeroone3010.yahueapi.discovery` - Bridge discovery functionality (mDNS, N-UPnP)
+- `io.github.greenstevester.yahueapi.discovery` - Bridge discovery functionality (mDNS, N-UPnP)
 
 ### Key Design Patterns
 - Factory pattern for creating domain objects from API responses

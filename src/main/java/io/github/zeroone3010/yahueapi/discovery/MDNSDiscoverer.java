@@ -1,6 +1,6 @@
-package io.github.zeroone3010.yahueapi.discovery;
+package io.github.greenstevester.yahueapi.discovery;
 
-import io.github.zeroone3010.yahueapi.HueBridge;
+import io.github.greenstevester.yahueapi.HueBridge;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,11 +1,11 @@
-package io.github.zeroone3010.yahueapi.v2;
+package io.github.greenstevester.yahueapi.v2;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.zeroone3010.yahueapi.HueApiException;
-import io.github.zeroone3010.yahueapi.v2.domain.LightResource;
-import io.github.zeroone3010.yahueapi.v2.domain.LightResourceRoot;
-import io.github.zeroone3010.yahueapi.v2.domain.update.UpdateLight;
+import io.github.greenstevester.yahueapi.HueApiException;
+import io.github.greenstevester.yahueapi.v2.domain.LightResource;
+import io.github.greenstevester.yahueapi.v2.domain.LightResourceRoot;
+import io.github.greenstevester.yahueapi.v2.domain.update.UpdateLight;
 
 import java.io.IOException;
 import java.io.InputStream;

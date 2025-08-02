@@ -1,7 +1,7 @@
-package io.github.zeroone3010.yahueapi.v2;
+package io.github.greenstevester.yahueapi.v2;
 
-import io.github.zeroone3010.yahueapi.v2.domain.Motion;
-import io.github.zeroone3010.yahueapi.v2.domain.MotionReport;
+import io.github.greenstevester.yahueapi.v2.domain.Motion;
+import io.github.greenstevester.yahueapi.v2.domain.MotionReport;
 
 import java.time.ZonedDateTime;
 import java.util.Optional;

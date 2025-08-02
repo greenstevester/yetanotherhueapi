@@ -1,12 +1,12 @@
-package io.github.zeroone3010.yahueapi.v2;
+package io.github.greenstevester.yahueapi.v2;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.launchdarkly.eventsource.MessageEvent;
 import com.launchdarkly.eventsource.background.BackgroundEventHandler;
-import io.github.zeroone3010.yahueapi.v2.domain.HueEvent;
-import io.github.zeroone3010.yahueapi.v2.domain.event.ButtonEvent;
-import io.github.zeroone3010.yahueapi.v2.domain.event.MotionEvent;
+import io.github.greenstevester.yahueapi.v2.domain.HueEvent;
+import io.github.greenstevester.yahueapi.v2.domain.event.ButtonEvent;
+import io.github.greenstevester.yahueapi.v2.domain.event.MotionEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

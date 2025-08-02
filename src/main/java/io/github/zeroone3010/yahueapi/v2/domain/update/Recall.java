@@ -1,8 +1,8 @@
-package io.github.zeroone3010.yahueapi.v2.domain.update;
+package io.github.greenstevester.yahueapi.v2.domain.update;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import static io.github.zeroone3010.yahueapi.v2.domain.update.SceneAction.ACTIVE;
+import static io.github.greenstevester.yahueapi.v2.domain.update.SceneAction.ACTIVE;
 
 public class Recall {
   @JsonProperty("action")

@@ -1,7 +1,7 @@
-package io.github.zeroone3010.yahueapi.v2;
+package io.github.greenstevester.yahueapi.v2;
 
-import io.github.zeroone3010.yahueapi.v2.domain.ButtonResource;
-import io.github.zeroone3010.yahueapi.v2.domain.ButtonSpecifics;
+import io.github.greenstevester.yahueapi.v2.domain.ButtonResource;
+import io.github.greenstevester.yahueapi.v2.domain.ButtonSpecifics;
 
 import java.util.Optional;
 import java.util.UUID;

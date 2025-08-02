@@ -1,12 +1,12 @@
-package io.github.zeroone3010.yahueapi.v2;
+package io.github.greenstevester.yahueapi.v2;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.zeroone3010.yahueapi.HueApiException;
-import io.github.zeroone3010.yahueapi.v2.domain.DeviceResource;
-import io.github.zeroone3010.yahueapi.v2.domain.Motion;
-import io.github.zeroone3010.yahueapi.v2.domain.MotionResourceRoot;
-import io.github.zeroone3010.yahueapi.v2.domain.ResourceIdentifier;
-import io.github.zeroone3010.yahueapi.v2.domain.ResourceType;
+import io.github.greenstevester.yahueapi.HueApiException;
+import io.github.greenstevester.yahueapi.v2.domain.DeviceResource;
+import io.github.greenstevester.yahueapi.v2.domain.Motion;
+import io.github.greenstevester.yahueapi.v2.domain.MotionResourceRoot;
+import io.github.greenstevester.yahueapi.v2.domain.ResourceIdentifier;
+import io.github.greenstevester.yahueapi.v2.domain.ResourceType;
 
 import java.io.IOException;
 import java.io.InputStream;

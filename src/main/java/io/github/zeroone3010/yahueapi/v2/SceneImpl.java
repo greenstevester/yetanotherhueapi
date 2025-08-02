@@ -1,4 +1,4 @@
-package io.github.zeroone3010.yahueapi.v2;
+package io.github.greenstevester.yahueapi.v2;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

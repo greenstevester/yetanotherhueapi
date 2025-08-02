@@ -1,9 +1,9 @@
-package io.github.zeroone3010.yahueapi.v2.domain.update;
+package io.github.greenstevester.yahueapi.v2.domain.update;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.github.zeroone3010.yahueapi.v2.domain.JsonStringUtil;
-import io.github.zeroone3010.yahueapi.v2.domain.Xy;
+import io.github.greenstevester.yahueapi.v2.domain.JsonStringUtil;
+import io.github.greenstevester.yahueapi.v2.domain.Xy;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Color {

@@ -4,7 +4,7 @@ YetAnotherHueApi - Java 17 Library for Philips Hue
 [![javadoc](https://javadoc.io/badge2/io.github.greenstevester/yetanotherhueapi/javadoc.svg)](https://javadoc.io/doc/io.github.greenstevester/yetanotherhueapi)
 
 A modern Java 17 library for controlling Philips Hue lights. This library accesses
-the REST API of the Philips Hue Bridge directly without using the official Hue SDK. 
+the REST API of the Philips Hue Bridge directly without using the official Hue SDK.
 
 ## Prerequisites
 - **Java 17 or higher** (updated from Java 8 for modern language features)
@@ -49,8 +49,8 @@ dependencies {
 Here's a simple example to get you started - discover your bridge and turn on a light:
 
 ```java
-import io.github.zeroone3010.yahueapi.v2.*;
-import io.github.zeroone3010.yahueapi.discovery.*;
+import io.github.greenstevester.yahueapi.v2.*;
+import io.github.greenstevester.yahueapi.discovery.*;
 
 // Discover your Hue Bridge
 Future<List<HueBridge>> bridgesFuture = new HueBridgeDiscoveryService()
@@ -74,11 +74,11 @@ First, import the classes from this library (and some others too):
 
 [//]: # (imports)
 ```java
-import io.github.zeroone3010.yahueapi.Color;
-import io.github.zeroone3010.yahueapi.HueBridge;
-import io.github.zeroone3010.yahueapi.HueBridgeConnectionBuilder;
-import io.github.zeroone3010.yahueapi.v2.*;
-import io.github.zeroone3010.yahueapi.discovery.*;
+import io.github.greenstevester.yahueapi.Color;
+import io.github.greenstevester.yahueapi.HueBridge;
+import io.github.greenstevester.yahueapi.HueBridgeConnectionBuilder;
+import io.github.greenstevester.yahueapi.v2.*;
+import io.github.greenstevester.yahueapi.discovery.*;
 
 import java.util.List;
 import java.util.Map;
@@ -142,7 +142,7 @@ final Hue hue = new Hue(bridgeIp, key);
 
 #### A note on setting colors
 
-When setting the color of a light or a room, one must use the `io.github.zeroone3010.yahueapi.Color` class.
+When setting the color of a light or a room, one must use the `io.github.greenstevester.yahueapi.Color` class.
 There exists several ways to initialize the class using its
 factory methods. `Color.of(int)` accepts a color code as an integer of the typical `0xRRGGBB` format.
 You may get an integer like this from, for example, from the `java.awt.Color#getRGB()` method.

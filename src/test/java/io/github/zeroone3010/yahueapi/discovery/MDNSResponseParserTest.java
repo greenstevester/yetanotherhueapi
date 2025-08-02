@@ -1,4 +1,4 @@
-package io.github.zeroone3010.yahueapi.discovery;
+package io.github.greenstevester.yahueapi.discovery;
 
 import org.junit.jupiter.api.Test;
 

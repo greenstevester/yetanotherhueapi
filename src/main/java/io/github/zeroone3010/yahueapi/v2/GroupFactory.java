@@ -1,18 +1,18 @@
-package io.github.zeroone3010.yahueapi.v2;
+package io.github.greenstevester.yahueapi.v2;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.zeroone3010.yahueapi.HueApiException;
-import io.github.zeroone3010.yahueapi.v2.domain.DeviceResource;
-import io.github.zeroone3010.yahueapi.v2.domain.GroupResource;
-import io.github.zeroone3010.yahueapi.v2.domain.GroupedLightResource;
-import io.github.zeroone3010.yahueapi.v2.domain.GroupedLightResourceRoot;
-import io.github.zeroone3010.yahueapi.v2.domain.Resource;
-import io.github.zeroone3010.yahueapi.v2.domain.ResourceIdentifier;
-import io.github.zeroone3010.yahueapi.v2.domain.SceneResource;
-import io.github.zeroone3010.yahueapi.v2.domain.update.SceneActivation;
-import io.github.zeroone3010.yahueapi.v2.domain.update.UpdateLight;
-import io.github.zeroone3010.yahueapi.v2.domain.update.UpdateRoom;
+import io.github.greenstevester.yahueapi.HueApiException;
+import io.github.greenstevester.yahueapi.v2.domain.DeviceResource;
+import io.github.greenstevester.yahueapi.v2.domain.GroupResource;
+import io.github.greenstevester.yahueapi.v2.domain.GroupedLightResource;
+import io.github.greenstevester.yahueapi.v2.domain.GroupedLightResourceRoot;
+import io.github.greenstevester.yahueapi.v2.domain.Resource;
+import io.github.greenstevester.yahueapi.v2.domain.ResourceIdentifier;
+import io.github.greenstevester.yahueapi.v2.domain.SceneResource;
+import io.github.greenstevester.yahueapi.v2.domain.update.SceneActivation;
+import io.github.greenstevester.yahueapi.v2.domain.update.UpdateLight;
+import io.github.greenstevester.yahueapi.v2.domain.update.UpdateRoom;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,10 +29,10 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import static io.github.zeroone3010.yahueapi.v2.domain.ResourceType.DEVICE;
-import static io.github.zeroone3010.yahueapi.v2.domain.ResourceType.GROUPED_LIGHT;
-import static io.github.zeroone3010.yahueapi.v2.domain.ResourceType.LIGHT;
-import static io.github.zeroone3010.yahueapi.v2.domain.ResourceType.SCENE;
+import static io.github.greenstevester.yahueapi.v2.domain.ResourceType.DEVICE;
+import static io.github.greenstevester.yahueapi.v2.domain.ResourceType.GROUPED_LIGHT;
+import static io.github.greenstevester.yahueapi.v2.domain.ResourceType.LIGHT;
+import static io.github.greenstevester.yahueapi.v2.domain.ResourceType.SCENE;
 import static java.util.stream.Collectors.toList;
 
 public class GroupFactory {

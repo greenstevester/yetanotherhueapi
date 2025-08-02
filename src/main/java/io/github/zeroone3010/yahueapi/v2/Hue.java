@@ -1,4 +1,4 @@
-package io.github.zeroone3010.yahueapi.v2;
+package io.github.greenstevester.yahueapi.v2;
 
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -6,19 +6,19 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.launchdarkly.eventsource.ConnectStrategy;
 import com.launchdarkly.eventsource.EventSource;
 import com.launchdarkly.eventsource.background.BackgroundEventSource;
-import io.github.zeroone3010.yahueapi.HueApiException;
-import io.github.zeroone3010.yahueapi.HueBridgeConnectionBuilder;
-import io.github.zeroone3010.yahueapi.SecureJsonFactory;
-import io.github.zeroone3010.yahueapi.v2.domain.BridgeResource;
-import io.github.zeroone3010.yahueapi.v2.domain.ButtonResource;
-import io.github.zeroone3010.yahueapi.v2.domain.DeviceResource;
-import io.github.zeroone3010.yahueapi.v2.domain.GroupResource;
-import io.github.zeroone3010.yahueapi.v2.domain.LightResource;
-import io.github.zeroone3010.yahueapi.v2.domain.Resource;
-import io.github.zeroone3010.yahueapi.v2.domain.ResourceRoot;
-import io.github.zeroone3010.yahueapi.v2.domain.ResourceType;
-import io.github.zeroone3010.yahueapi.v2.domain.RoomResource;
-import io.github.zeroone3010.yahueapi.v2.domain.ZoneResource;
+import io.github.greenstevester.yahueapi.HueApiException;
+import io.github.greenstevester.yahueapi.HueBridgeConnectionBuilder;
+import io.github.greenstevester.yahueapi.SecureJsonFactory;
+import io.github.greenstevester.yahueapi.v2.domain.BridgeResource;
+import io.github.greenstevester.yahueapi.v2.domain.ButtonResource;
+import io.github.greenstevester.yahueapi.v2.domain.DeviceResource;
+import io.github.greenstevester.yahueapi.v2.domain.GroupResource;
+import io.github.greenstevester.yahueapi.v2.domain.LightResource;
+import io.github.greenstevester.yahueapi.v2.domain.Resource;
+import io.github.greenstevester.yahueapi.v2.domain.ResourceRoot;
+import io.github.greenstevester.yahueapi.v2.domain.ResourceType;
+import io.github.greenstevester.yahueapi.v2.domain.RoomResource;
+import io.github.greenstevester.yahueapi.v2.domain.ZoneResource;
 import okhttp3.Headers;
 import okhttp3.OkHttpClient;
 import org.slf4j.Logger;
@@ -48,14 +48,14 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import static io.github.zeroone3010.yahueapi.v2.domain.ResourceType.MOTION;
-import static io.github.zeroone3010.yahueapi.v2.domain.ResourceType.TEMPERATURE;
+import static io.github.greenstevester.yahueapi.v2.domain.ResourceType.MOTION;
+import static io.github.greenstevester.yahueapi.v2.domain.ResourceType.TEMPERATURE;
 import static java.util.Collections.emptyList;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
 
 public class Hue {
-  private static final Logger logger = LoggerFactory.getLogger("io.github.zeroone3010.yahueapi");
+  private static final Logger logger = LoggerFactory.getLogger("io.github.greenstevester.yahueapi");
   private static final int EXPECTED_NEW_LIGHTS_SEARCH_TIME_IN_SECONDS = 50;
   public static final String HUE_APPLICATION_KEY_HEADER = "hue-application-key";
   public static final long EVENTS_CONNECTION_TIMEOUT_MINUTES = 1L;

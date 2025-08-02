@@ -1,6 +1,6 @@
-package io.github.zeroone3010.yahueapi.v2;
+package io.github.greenstevester.yahueapi.v2;
 
-import io.github.zeroone3010.yahueapi.v2.domain.ResourceType;
+import io.github.greenstevester.yahueapi.v2.domain.ResourceType;
 
 import java.util.Collection;
 import java.util.List;

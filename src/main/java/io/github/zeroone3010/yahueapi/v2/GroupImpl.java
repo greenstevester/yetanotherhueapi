@@ -1,8 +1,8 @@
-package io.github.zeroone3010.yahueapi.v2;
+package io.github.greenstevester.yahueapi.v2;
 
-import io.github.zeroone3010.yahueapi.v2.domain.GroupedLightResource;
-import io.github.zeroone3010.yahueapi.v2.domain.ResourceType;
-import io.github.zeroone3010.yahueapi.v2.domain.update.UpdateLight;
+import io.github.greenstevester.yahueapi.v2.domain.GroupedLightResource;
+import io.github.greenstevester.yahueapi.v2.domain.ResourceType;
+import io.github.greenstevester.yahueapi.v2.domain.update.UpdateLight;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,11 +16,11 @@ import java.util.UUID;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-import static io.github.zeroone3010.yahueapi.v2.domain.update.On.OFF;
-import static io.github.zeroone3010.yahueapi.v2.domain.update.On.ON;
+import static io.github.greenstevester.yahueapi.v2.domain.update.On.OFF;
+import static io.github.greenstevester.yahueapi.v2.domain.update.On.ON;
 
 public class GroupImpl implements Group {
-  private static final Logger logger = LoggerFactory.getLogger("io.github.zeroone3010.yahueapi");
+  private static final Logger logger = LoggerFactory.getLogger("io.github.greenstevester.yahueapi");
 
   private UUID id;
   private ResourceType type;
