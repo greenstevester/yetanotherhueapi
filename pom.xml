@@ -163,10 +163,10 @@
     </distributionManagement>
 
     <scm>
-        <connection>scm:git:git://github.com/ZeroOne3010/yetanotherhueapi.git</connection>
-        <developerConnection>scm:git:git@github.com:ZeroOne3010/yetanotherhueapi.git</developerConnection>
-        <url>https://github.com/ZeroOne3010/yetanotherhueapi</url>
-        <tag>v3.0.0-beta</tag>
+        <connection>scm:git:git://github.com/greenstevester/yetanotherhueapi.git</connection>
+        <developerConnection>scm:git:git@github.com:greenstevester/yetanotherhueapi.git</developerConnection>
+        <url>https://github.com/greenstevester/yetanotherhueapi</url>
+        <tag>v4.0.0</tag>
     </scm>
 
     <dependencies>
