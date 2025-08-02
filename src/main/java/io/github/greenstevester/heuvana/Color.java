@@ -7,6 +7,10 @@ import java.util.stream.Stream;
 
 /**
  * Use this class to define a color for a color light -- or for a room with color lights.
+ *
+ * @param red   A float number from 0 to 1 inclusive representing the red component
+ * @param green A float number from 0 to 1 inclusive representing the green component  
+ * @param blue  A float number from 0 to 1 inclusive representing the blue component
  */
 public record Color(float red, float green, float blue) {
 
@@ -27,14 +31,29 @@ public record Color(float red, float green, float blue) {
   }
 
   // Legacy getters for backward compatibility
+  /**
+   * Gets the red component of this color.
+   *
+   * @return the red component as a float from 0 to 1 inclusive
+   */
   public float getRed() {
     return red;
   }
 
+  /**
+   * Gets the green component of this color.
+   *
+   * @return the green component as a float from 0 to 1 inclusive
+   */
   public float getGreen() {
     return green;
   }
 
+  /**
+   * Gets the blue component of this color.
+   *
+   * @return the blue component as a float from 0 to 1 inclusive
+   */
   public float getBlue() {
     return blue;
   }

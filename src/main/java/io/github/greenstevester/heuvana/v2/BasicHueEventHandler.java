@@ -12,8 +12,14 @@ import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
+/**
+ * Basic implementation of a Hue event handler that processes events from the Hue Bridge.
+ */
 public class BasicHueEventHandler implements BackgroundEventHandler {
   private static final Logger logger = LoggerFactory.getLogger(BasicHueEventHandler.class);
+  /**
+   * Type reference for deserializing lists of HueEvent objects.
+   */
   public static final TypeReference<List<HueEvent>> EVENT_LIST_TYPE_REF = new TypeReference<List<HueEvent>>() {
   };
 
@@ -21,6 +27,12 @@ public class BasicHueEventHandler implements BackgroundEventHandler {
   private final Hue hue;
   private final HueEventListener eventListener;
 
+  /**
+   * Creates a new BasicHueEventHandler.
+   *
+   * @param hue the Hue instance to use for object mapping
+   * @param eventListener the listener to receive processed events
+   */
   public BasicHueEventHandler(final Hue hue, final HueEventListener eventListener) {
     this.objectMapper = hue.objectMapper;
     this.hue = hue;

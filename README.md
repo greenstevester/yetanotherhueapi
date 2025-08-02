@@ -8,9 +8,10 @@ the REST API of the Philips Hue Bridge directly without using the official Hue S
 
 ## Prerequisites
 - **Java 17 or higher** (updated from Java 8 for modern language features)
+- GPG
 - Philips Hue Bridge (API v2 recommended)
 - This library works with Android projects using API level 24 or higher
-- Last confirmed compatible with Philips Hue Bridge API in June 2023
+- Last confirmed compatible with Philips Hue Bridge API in August 2025
 
 ----
 

@@ -7,6 +7,9 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Supplier;
 
+/**
+ * Implementation of a Hue button.
+ */
 public class ButtonImpl implements Button {
   private final Supplier<ButtonResource> stateProvider;
   private final UUID id;
@@ -14,6 +17,12 @@ public class ButtonImpl implements Button {
 
   private Switch owner;
 
+  /**
+   * Creates a new ButtonImpl.
+   *
+   * @param stateProvider the state provider for this button
+   * @param buttonResource the button resource data
+   */
   public ButtonImpl(final Supplier<ButtonResource> stateProvider, final ButtonResource buttonResource) {
     this.stateProvider = stateProvider;
     this.id = buttonResource.getId();

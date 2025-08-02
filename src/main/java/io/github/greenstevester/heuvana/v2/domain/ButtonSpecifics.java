@@ -2,6 +2,9 @@ package io.github.greenstevester.heuvana.v2.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Specific data for a button resource.
+ */
 public class ButtonSpecifics {
   @JsonProperty("last_event")
   private String lastEvent;

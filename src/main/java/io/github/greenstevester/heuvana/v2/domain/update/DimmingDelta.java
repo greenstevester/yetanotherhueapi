@@ -4,6 +4,10 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.github.greenstevester.heuvana.v2.domain.JsonStringUtil;
 
+/**
+ * Update object for making relative brightness changes on Hue lights.
+ * Allows increasing or decreasing brightness by a delta amount.
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class DimmingDelta {
 
@@ -13,6 +17,11 @@ public class DimmingDelta {
   @JsonProperty("brightness_delta")
   private int brightnessDelta;
 
+  /**
+   * Gets the delta action to perform (up or down).
+   *
+   * @return the delta action
+   */
   public DeltaAction getAction() {
     return action;
   }
@@ -28,6 +37,11 @@ public class DimmingDelta {
     return this;
   }
 
+  /**
+   * Gets the brightness delta amount.
+   *
+   * @return brightness delta percentage (0-100)
+   */
   public int getBrightnessDelta() {
     return brightnessDelta;
   }

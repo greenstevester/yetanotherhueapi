@@ -410,7 +410,7 @@
                             </excludes>
                         </configuration>
                     </plugin>
-                    
+
                     <!-- Override Javadoc plugin to be less strict -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
@@ -422,10 +422,11 @@
                             <failOnError>false</failOnError>
                             <quiet>true</quiet>
                             <doclint>none</doclint>
+                            <additionalJOption>-Xdoclint:none</additionalJOption>
                             <skip>true</skip>
                         </configuration>
                     </plugin>
-                    
+
                     <!-- Disable GPG signing in quality profile -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
@@ -435,7 +436,7 @@
                             <skip>true</skip>
                         </configuration>
                     </plugin>
-                    
+
                     <!-- SpotBugs for static analysis -->
                     <plugin>
                         <groupId>com.github.spotbugs</groupId>
@@ -454,16 +455,6 @@
                                 </goals>
                             </execution>
                         </executions>
-                    </plugin>
-
-                    <!-- PMD for code analysis - Disabled due to Java 23 compatibility issues -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-pmd-plugin</artifactId>
-                        <version>3.24.0</version>
-                        <configuration>
-                            <skip>true</skip>
-                        </configuration>
                     </plugin>
 
                     <!-- Checkstyle for code style -->
