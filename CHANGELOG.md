@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Removed
 
-* The entire old `io.github.greenstevester.yahueapi.Hue` class. Use `io.github.greenstevester.yahueapi.v2.Hue` instead.
+* The entire old `io.github.greenstevester.yahueapi.Hue` class. Use `v2.io.github.greenstevester.heuvana.Hue` instead.
   Not every method might yet be available with it yet, but most, anyway. With this, also the related classes, returned
   by the various method there, were removed; use the ones used by the new `Hue` class instead.
 * Support for HTTP. Only HTTPS is supported anymore. Should work both with the updated Bridges that have a
@@ -64,7 +64,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 
-* Support for events! Use the new `io.github.greenstevester.yahueapi.v2.Hue` class
+* Support for events! Use the new `v2.io.github.greenstevester.heuvana.Hue` class
   and its `subscribeToEvents(HueEventListener)` method to get real time updates from the Bridge
   when something happens in the system.
 
@@ -79,7 +79,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 * `getRooms()`, `getZones()`,  `getRoomByName()`, and `getZoneByName()` methods from the
   `io.github.greenstevester.yahueapi.Hue` class in favor of the methods with the same names (if not the same signatures)
-  in the `io.github.greenstevester.yahueapi.v2.Hue` class. Note that the deprecated methods return `Collection`s
+  in the `v2.io.github.greenstevester.heuvana.Hue` class. Note that the deprecated methods return `Collection`s
   of objects, whereas the new methods return `Map`s, where the key is the unique id of the
   entity, and the value is the entity itself. Just call the `.values()` method of such a `Map` if you still want
   to iterate through all the values like before.
@@ -212,7 +212,7 @@ Also, many thanks to everyone who contributed issues and pull requests!
 Instead, all switches are equal and can be accessed with the new `Switch` interface.
 The `Hue` class now has `getSwitches()` and `getSwitchByName(String)` methods instead of the old `getDimmerSwitches()` and `getDimmerSwitchByName(String)` methods.
 * `LightType.ON_OFF` enum value was renamed to `LightType.ON_OFF_LIGHT` to better distinguish it from the `ON_OFF_PLUGIN_UNIT` value.
-* Light color is to be set with the new `io.github.greenstevester.yahueapi.Color` class. The class contains a multitude
+* Light color is to be set with the new `io.github.greenstevester.heuvana.Color` class. The class contains a multitude
 of factory methods, so that the transition from the old `java.awt.Color` would be as easy as possible. This change
 was made to remove the dependency on the `java.awt` package, which is not available in the Android environment.
 * Motion sensors renamed to presence sensors to account for the addition of geofence sensors. This means that in the
@@ -242,7 +242,7 @@ v1.3.1 (2020-02-27)
 
 ### Fixed
 
-* Fixed [issue #15](https://github.com/ZeroOne3010/yetanotherhueapi/issues/15):
+* Fixed [issue #15](https://github.com/ZeroOne3010/huevana/issues/15):
   the `HueBridgeDiscoveryService` returned `HueBridge` objects with their name and IP address reversed
 
 v1.3.0 (2020-02-16)

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+    <!-- Exclude test files -->
+    <Match>
+        <Class name="~.*Test.*"/>
+    </Match>
+    
+    <!-- Exclude domain objects from serialization warnings -->
+    <Match>
+        <Class name="~.*domain.*"/>
+        <Bug pattern="SE_BAD_FIELD"/>
+    </Match>
+    
+    <!-- Allow some patterns common in API libraries -->
+    <Match>
+        <Bug pattern="EI_EXPOSE_REP"/>
+    </Match>
+    <Match>
+        <Bug pattern="EI_EXPOSE_REP2"/>
+    </Match>
+    
+    <!-- Allow nullable return values in Optional patterns -->
+    <Match>
+        <Bug pattern="RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE"/>
+    </Match>
+    
+    <!-- Allow some security patterns for self-signed certificates -->
+    <Match>
+        <Class name="~.*SelfSignedHueBridgeCertificateAcceptingTrustManager"/>
+        <Bug pattern="WEAK_TRUST_MANAGER"/>
+    </Match>
+    
+    <!-- Allow System.out usage in example/test code -->
+    <Match>
+        <Class name="~.*TestRun.*"/>
+        <Bug pattern="DM_DEFAULT_ENCODING"/>
+    </Match>
+</FindBugsFilter>

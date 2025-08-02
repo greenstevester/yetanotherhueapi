@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-YetAnotherHueApi is a Java 17 library for controlling Philips Hue lights via the REST API of the Philips Hue Bridge. It provides a modern, intuitive API without using the official Hue SDK.
+huevana is a Java 17 library for controlling Philips Hue lights via the REST API of the Philips Hue Bridge. It provides a modern, intuitive API without using the official Hue SDK.
 
 ## Development Commands
 

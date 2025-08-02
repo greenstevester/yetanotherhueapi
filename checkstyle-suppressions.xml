@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE suppressions PUBLIC
+        "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+        "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+
+<suppressions>
+    <!-- Suppress checks for test files -->
+    <suppress checks=".*" files=".*Test\.java"/>
+    <suppress checks=".*" files=".*TestRun\.java"/>
+    
+    <!-- Suppress javadoc checks - existing code doesn't have full javadoc -->
+    <suppress checks="JavadocType" files=".*\.java"/>
+    <suppress checks="JavadocMethod" files=".*\.java"/>
+    <suppress checks="JavadocVariable" files=".*\.java"/>
+    <suppress checks="JavadocPackage" files=".*\.java"/>
+    <suppress checks="MissingJavadocMethod" files=".*\.java"/>
+    <suppress checks="MissingJavadocType" files=".*\.java"/>
+    
+    <!-- Suppress import-related checks -->
+    <suppress checks="UnusedImports" files=".*\.java"/>
+    <suppress checks="ImportOrder" files=".*\.java"/>
+    <suppress checks="AvoidStarImport" files=".*\.java"/>
+    
+    <!-- Suppress design pattern violations -->
+    <suppress checks="DesignForExtension" files=".*\.java"/>
+    <suppress checks="VisibilityModifier" files=".*\.java"/>
+    <suppress checks="HiddenField" files=".*\.java"/>
+    <suppress checks="FinalParameters" files=".*\.java"/>
+    <suppress checks="FinalClass" files=".*\.java"/>
+    
+    <!-- Suppress naming convention violations -->
+    <suppress checks="AbbreviationAsWordInName" files=".*\.java"/>
+    <suppress checks="MemberName" files=".*\.java"/>
+    <suppress checks="ConstantName" files=".*\.java"/>
+    <suppress checks="LocalVariableName" files=".*\.java"/>
+    <suppress checks="ParameterName" files=".*\.java"/>
+    
+    <!-- Suppress size-related violations -->
+    <suppress checks="LineLength" files=".*\.java"/>
+    <suppress checks="ParameterNumber" files=".*\.java"/>
+    <suppress checks="MethodLength" files=".*\.java"/>
+    <suppress checks="FileLength" files=".*\.java"/>
+    
+    <!-- Suppress checks for auto-generated or external code patterns -->
+    <suppress checks="MagicNumber" files=".*\.java"/>
+    <suppress checks="AvoidInlineConditionals" files=".*\.java"/>
+    <suppress checks="EmptyBlock" files=".*\.java"/>
+    <suppress checks="LeftCurly" files=".*\.java"/>
+    <suppress checks="RightCurly" files=".*\.java"/>
+    <suppress checks="NeedBraces" files=".*\.java"/>
+    <suppress checks="WhitespaceAfter" files=".*\.java"/>
+    <suppress checks="WhitespaceAround" files=".*\.java"/>
+    <suppress checks="NoWhitespaceAfter" files=".*\.java"/>
+    <suppress checks="NoWhitespaceBefore" files=".*\.java"/>
+    <suppress checks="ParenPad" files=".*\.java"/>
+    <suppress checks="TypecastParenPad" files=".*\.java"/>
+    <suppress checks="OperatorWrap" files=".*\.java"/>
+    
+    <!-- Allow existing exception handling patterns -->
+    <suppress checks="IllegalCatch" files=".*\.java"/>
+    <suppress checks="EmptyCatchBlock" files=".*\.java"/>
+    
+    <!-- Allow existing utility patterns -->
+    <suppress checks="UtilityClassHasPrivateConstructor" files=".*\.java"/>
+    <suppress checks="HideUtilityClassConstructor" files=".*\.java"/>
+    
+    <!-- Allow redundant modifiers -->
+    <suppress checks="RedundantModifier" files=".*\.java"/>
+    
+    <!-- Allow TODO comments -->
+    <suppress checks="TodoComment" files=".*\.java"/>
+    
+    <!-- Allow javadoc style issues -->
+    <suppress checks="JavadocStyle" files=".*\.java"/>
+</suppressions>

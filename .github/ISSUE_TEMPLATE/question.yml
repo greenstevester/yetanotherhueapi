@@ -1,0 +1,114 @@
+name: Question / Support
+description: Ask a question about using the Hue API library
+title: "[Question]: "
+labels: ["question", "support"]
+assignees:
+  - greenstevester
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for your question!
+
+        Please check the documentation and existing issues first.
+
+        **Documentation**: [GitHub README](https://github.com/greenstevester/huevana#readme)
+
+  - type: input
+    id: library-version
+    attributes:
+      label: Library Version
+      description: Which version of huevana are you using?
+      placeholder: "e.g., 4.0.0"
+    validations:
+      required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: What would you like to know?
+      placeholder: Describe your question in detail...
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: What are you trying to accomplish?
+      placeholder: |
+        I'm working on...
+        I need to...
+    validations:
+      required: true
+
+  - type: textarea
+    id: code-sample
+    attributes:
+      label: Current Code
+      description: If applicable, show what you've tried so far
+      render: java
+      placeholder: |
+        // What you've tried so far
+        HueBridge bridge = HueBridge.discover().get(0);
+        // ... your code here
+    validations:
+      required: false
+
+  - type: dropdown
+    id: api-version
+    attributes:
+      label: Hue API Version
+      description: Which Hue API version are you asking about?
+      options:
+        - "V2 (recommended)"
+        - "V1 (legacy)"
+        - "Both"
+        - "Not sure"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: category
+    attributes:
+      label: Question Category
+      description: What category does your question fall into?
+      options:
+        - label: Bridge discovery and connection
+        - label: Light control and management
+        - label: Groups and scenes
+        - label: Sensors and switches
+        - label: Events and streaming
+        - label: Authentication and security
+        - label: Error handling
+        - label: Performance and optimization
+        - label: Integration with frameworks
+        - label: Migration from other libraries
+        - label: General usage
+
+  - type: textarea
+    id: research
+    attributes:
+      label: What have you tried?
+      description: What documentation, examples, or solutions have you already looked at?
+      placeholder: |
+        I've checked:
+        - README documentation
+        - Existing GitHub issues
+        - Philips Hue official documentation
+        - Stack Overflow
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Please confirm the following
+      options:
+        - label: I have searched existing issues and documentation
+          required: true
+        - label: This is a question about using the library, not a bug report
+          required: true

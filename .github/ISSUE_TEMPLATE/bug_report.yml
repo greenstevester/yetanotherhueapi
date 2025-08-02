@@ -1,0 +1,151 @@
+name: Bug Report
+description: Report a bug or issue with the Hue API library
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+assignees:
+  - greenstevester
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+
+        Please search existing issues first to avoid duplicates.
+
+  - type: input
+    id: library-version
+    attributes:
+      label: Library Version
+      description: Which version of huevana are you using?
+      placeholder: "e.g., 4.0.0"
+    validations:
+      required: true
+
+  - type: input
+    id: java-version
+    attributes:
+      label: Java Version
+      description: Which Java version are you using?
+      placeholder: "e.g., 17, 21"
+    validations:
+      required: true
+
+  - type: input
+    id: hue-bridge-version
+    attributes:
+      label: Hue Bridge Version
+      description: What version is your Philips Hue Bridge?
+      placeholder: "e.g., 1.56.0, Bridge v2"
+    validations:
+      required: false
+
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is.
+      placeholder: Describe the issue you're experiencing...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: Expected Behavior
+      description: What did you expect to happen?
+      placeholder: Describe what you expected to happen...
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual Behavior
+      description: What actually happened?
+      placeholder: Describe what actually happened...
+    validations:
+      required: true
+
+  - type: textarea
+    id: code-sample
+    attributes:
+      label: Code Sample
+      description: Please provide a minimal code sample that reproduces the issue
+      render: java
+      placeholder: |
+        // Provide a minimal code sample
+        HueBridge bridge = HueBridge.discover().get(0);
+        // ... your code here
+    validations:
+      required: false
+
+  - type: textarea
+    id: stack-trace
+    attributes:
+      label: Stack Trace / Error Messages
+      description: If applicable, provide the full stack trace or error messages
+      render: text
+      placeholder: Paste any error messages or stack traces here...
+    validations:
+      required: false
+
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: Detailed steps to reproduce the issue
+      placeholder: |
+        1. Create a new HueBridge instance
+        2. Call method X with parameters Y
+        3. See error
+    validations:
+      required: true
+
+  - type: dropdown
+    id: api-version
+    attributes:
+      label: Hue API Version
+      description: Which Hue API version are you using?
+      options:
+        - "V2 (recommended)"
+        - "V1 (legacy)"
+        - "Both"
+        - "Not sure"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: environment
+    attributes:
+      label: Environment
+      description: Please check all that apply
+      options:
+        - label: Desktop application
+        - label: Android application
+        - label: Web application
+        - label: Server/backend application
+        - label: Using HTTPS connection
+        - label: Using HTTP connection
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other context about the problem here
+      placeholder: Any additional information that might be helpful...
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      description: Please confirm the following
+      options:
+        - label: I have searched existing issues for duplicates
+          required: true
+        - label: I have provided a minimal code sample that reproduces the issue
+          required: false
+        - label: I am using a supported Java version (17+)
+          required: true

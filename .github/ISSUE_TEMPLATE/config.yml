@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://github.com/greenstevester/huevana#readme
+    about: Read the project documentation and examples
+  - name: Philips Hue Developer Portal
+    url: https://developers.meethue.com/
+    about: Official Philips Hue API documentation
+  - name: Discussions
+    url: https://github.com/greenstevester/huevana/discussions
+    about: Community discussions and general questions

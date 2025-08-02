@@ -1,0 +1,342 @@
+# Repository Health Check Workflow
+#
+# This workflow performs a comprehensive health assessment of the repository,
+# analyzing code quality, dependencies, security, and project metrics.
+#
+# USAGE:
+# 1. Go to Actions tab in GitHub
+# 2. Select "Repository Health Check" workflow
+# 3. Click "Run workflow" button
+# 4. Configure options:
+#    - Generate Issue: Creates/updates a GitHub issue with results (default: true)
+#    - Severity Threshold: Minimum health score to avoid warnings (default: 70)
+#
+# WHAT IT CHECKS:
+# - Repository metrics (commits, contributors, code size)
+# - Open issues and pull requests
+# - Outdated dependencies and plugins
+# - Security vulnerabilities (OWASP dependency check)
+# - Test coverage (JaCoCo)
+# - Calculates overall health score (0-100)
+#
+# OUTPUTS:
+# - GitHub issue with detailed health report (if enabled)
+# - Workflow artifacts with detailed reports
+# - Action summary with key metrics
+#
+# WHEN TO USE:
+# - Before releases to ensure repository health
+# - After major dependency updates
+# - Monthly/quarterly health assessments
+# - When investigating project maintenance needs
+
+name: Repository Health Check
+
+on:
+  workflow_dispatch:
+    inputs:
+      generate_issue:
+        description: 'Create/update GitHub issue with results'
+        required: false
+        default: true
+        type: boolean
+      severity_threshold:
+        description: 'Minimum health score to avoid warnings (0-100)'
+        required: false
+        default: '70'
+        type: string
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: read
+
+jobs:
+  health-check:
+    name: Repository Health Assessment
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+    
+    - name: Analyze repository metrics
+      id: metrics
+      run: |
+        echo "Collecting repository metrics..."
+        
+        # Git metrics
+        TOTAL_COMMITS=$(git rev-list --all --count)
+        CONTRIBUTORS=$(git log --format='%aN' | sort -u | wc -l)
+        LAST_COMMIT_DATE=$(git log -1 --format='%ci')
+        BRANCHES=$(git branch -r | wc -l)
+        
+        # Code metrics
+        JAVA_FILES=$(find src -name "*.java" | wc -l)
+        TOTAL_LINES=$(find src -name "*.java" -exec wc -l {} \; | awk '{sum+=$1} END {print sum}')
+        TEST_FILES=$(find src/test -name "*.java" | wc -l)
+        
+        # Issues and PRs
+        OPEN_ISSUES=$(gh api repos/${{ github.repository }}/issues?state=open | jq length)
+        OPEN_PRS=$(gh api repos/${{ github.repository }}/pulls?state=open | jq length)
+        
+        echo "total-commits=$TOTAL_COMMITS" >> $GITHUB_OUTPUT
+        echo "contributors=$CONTRIBUTORS" >> $GITHUB_OUTPUT
+        echo "last-commit=$LAST_COMMIT_DATE" >> $GITHUB_OUTPUT
+        echo "branches=$BRANCHES" >> $GITHUB_OUTPUT
+        echo "java-files=$JAVA_FILES" >> $GITHUB_OUTPUT
+        echo "total-lines=$TOTAL_LINES" >> $GITHUB_OUTPUT
+        echo "test-files=$TEST_FILES" >> $GITHUB_OUTPUT
+        echo "open-issues=$OPEN_ISSUES" >> $GITHUB_OUTPUT
+        echo "open-prs=$OPEN_PRS" >> $GITHUB_OUTPUT
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Check dependencies for updates
+      run: |
+        echo "Checking for dependency updates..."
+        mvn versions:display-dependency-updates > dependency-updates.txt
+        mvn versions:display-plugin-updates > plugin-updates.txt
+        
+        OUTDATED_DEPS=$(grep -c "newer version" dependency-updates.txt || echo "0")
+        OUTDATED_PLUGINS=$(grep -c "newer version" plugin-updates.txt || echo "0")
+        
+        echo "outdated-dependencies=$OUTDATED_DEPS" >> $GITHUB_OUTPUT
+        echo "outdated-plugins=$OUTDATED_PLUGINS" >> $GITHUB_OUTPUT
+      id: dependencies
+    
+    - name: Check security vulnerabilities
+      run: |
+        echo "Running security scan..."
+        mvn org.owasp:dependency-check-maven:check -DfailBuildOnAnyVulnerability=false
+        
+        if [ -f "target/dependency-check-report.json" ]; then
+          VULNERABILITIES=$(jq '[.dependencies[].vulnerabilities // []] | add | length' target/dependency-check-report.json)
+        else
+          VULNERABILITIES=0
+        fi
+        
+        echo "vulnerabilities=$VULNERABILITIES" >> $GITHUB_OUTPUT
+      id: security
+    
+    - name: Check code coverage
+      run: |
+        echo "Calculating test coverage..."
+        mvn clean test jacoco:report
+        
+        if [ -f "target/site/jacoco/jacoco.xml" ]; then
+          COVERAGE=$(grep -o 'missed="[0-9]*"' target/site/jacoco/jacoco.xml | head -1 | grep -o '[0-9]*')
+          TOTAL=$(grep -o 'covered="[0-9]*"' target/site/jacoco/jacoco.xml | head -1 | grep -o '[0-9]*')
+          if [ "$TOTAL" -gt 0 ]; then
+            COVERAGE_PERCENT=$(echo "scale=1; $TOTAL * 100 / ($TOTAL + $COVERAGE)" | bc)
+          else
+            COVERAGE_PERCENT="0"
+          fi
+        else
+          COVERAGE_PERCENT="0"
+        fi
+        
+        echo "coverage=$COVERAGE_PERCENT" >> $GITHUB_OUTPUT
+      id: coverage
+    
+    - name: Generate health report
+      run: |
+        cat > health-report.md << 'EOF'
+        # Repository Health Report
+        
+        Generated on: $(date)
+        
+        ## 📊 Repository Metrics
+        - **Total Commits**: ${{ steps.metrics.outputs.total-commits }}
+        - **Contributors**: ${{ steps.metrics.outputs.contributors }}
+        - **Last Commit**: ${{ steps.metrics.outputs.last-commit }}
+        - **Branches**: ${{ steps.metrics.outputs.branches }}
+        - **Java Files**: ${{ steps.metrics.outputs.java-files }}
+        - **Total Lines of Code**: ${{ steps.metrics.outputs.total-lines }}
+        - **Test Files**: ${{ steps.metrics.outputs.test-files }}
+        
+        ## 🐛 Issues & Pull Requests
+        - **Open Issues**: ${{ steps.metrics.outputs.open-issues }}
+        - **Open Pull Requests**: ${{ steps.metrics.outputs.open-prs }}
+        
+        ## 📦 Dependencies
+        - **Outdated Dependencies**: ${{ steps.dependencies.outputs.outdated-dependencies }}
+        - **Outdated Plugins**: ${{ steps.dependencies.outputs.outdated-plugins }}
+        
+        ## 🔒 Security
+        - **Known Vulnerabilities**: ${{ steps.security.outputs.vulnerabilities }}
+        
+        ## 🧪 Test Coverage
+        - **Coverage**: ${{ steps.coverage.outputs.coverage }}%
+        
+        ## 🏥 Health Score
+        
+        EOF
+        
+        # Calculate health score
+        SCORE=100
+        
+        # Deduct points for issues
+        if [ "${{ steps.dependencies.outputs.outdated-dependencies }}" -gt 10 ]; then
+          SCORE=$((SCORE - 20))
+        elif [ "${{ steps.dependencies.outputs.outdated-dependencies }}" -gt 5 ]; then
+          SCORE=$((SCORE - 10))
+        fi
+        
+        if [ "${{ steps.security.outputs.vulnerabilities }}" -gt 0 ]; then
+          SCORE=$((SCORE - 30))
+        fi
+        
+        if [ $(echo "${{ steps.coverage.outputs.coverage }} < 70" | bc) -eq 1 ]; then
+          SCORE=$((SCORE - 15))
+        elif [ $(echo "${{ steps.coverage.outputs.coverage }} < 80" | bc) -eq 1 ]; then
+          SCORE=$((SCORE - 10))
+        fi
+        
+        if [ "${{ steps.metrics.outputs.open-issues }}" -gt 20 ]; then
+          SCORE=$((SCORE - 10))
+        fi
+        
+        echo "**Overall Health Score: $SCORE/100**" >> health-report.md
+        echo "" >> health-report.md
+        
+        if [ $SCORE -ge 90 ]; then
+          echo "🟢 **Excellent** - Repository is in great health!" >> health-report.md
+        elif [ $SCORE -ge 70 ]; then
+          echo "🟡 **Good** - Minor improvements recommended." >> health-report.md
+        elif [ $SCORE -ge 50 ]; then
+          echo "🟠 **Fair** - Several issues need attention." >> health-report.md
+        else
+          echo "🔴 **Poor** - Immediate action required!" >> health-report.md
+        fi
+        
+        echo "" >> health-report.md
+        echo "## 📋 Recommendations" >> health-report.md
+        
+        if [ "${{ steps.dependencies.outputs.outdated-dependencies }}" -gt 5 ]; then
+          echo "- 📦 Update outdated dependencies" >> health-report.md
+        fi
+        
+        if [ "${{ steps.security.outputs.vulnerabilities }}" -gt 0 ]; then
+          echo "- 🔒 Address security vulnerabilities immediately" >> health-report.md
+        fi
+        
+        if [ $(echo "${{ steps.coverage.outputs.coverage }} < 80" | bc) -eq 1 ]; then
+          echo "- 🧪 Improve test coverage (current: ${{ steps.coverage.outputs.coverage }}%)" >> health-report.md
+        fi
+        
+        if [ "${{ steps.metrics.outputs.open-issues }}" -gt 10 ]; then
+          echo "- 🐛 Triage and close old issues" >> health-report.md
+        fi
+        
+        echo "health-score=$SCORE" >> $GITHUB_OUTPUT
+      id: report
+    
+    - name: Upload reports
+      uses: actions/upload-artifact@v4
+      with:
+        name: health-reports
+        path: |
+          health-report.md
+          dependency-updates.txt
+          plugin-updates.txt
+          target/dependency-check-report.*
+          target/site/jacoco/
+        retention-days: 30
+    
+    - name: Create or update health issue
+      if: ${{ inputs.generate_issue }}
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const fs = require('fs');
+          const healthReport = fs.readFileSync('health-report.md', 'utf8');
+          
+          // Look for existing health check issue
+          const issues = await github.rest.issues.listForRepo({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            labels: 'health-check',
+            state: 'open'
+          });
+          
+          const healthScore = ${{ steps.report.outputs.health-score }};
+          const title = `Repository Health Check - Score: ${healthScore}/100`;
+          
+          if (issues.data.length > 0) {
+            // Update existing issue
+            await github.rest.issues.update({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issues.data[0].number,
+              title: title,
+              body: healthReport
+            });
+            console.log(`Updated existing health check issue #${issues.data[0].number}`);
+          } else {
+            // Create new issue
+            const issue = await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: title,
+              body: healthReport,
+              labels: ['health-check', 'automated']
+            });
+            console.log(`Created new health check issue #${issue.data.number}`);
+          }
+    
+    - name: Create summary
+      run: |
+        HEALTH_SCORE=${{ steps.report.outputs.health-score }}
+        THRESHOLD=${{ inputs.severity_threshold || '70' }}
+        
+        echo "# 🏥 Repository Health Check Complete" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        if [ "$HEALTH_SCORE" -ge 90 ]; then
+          echo "## 🟢 Excellent Health!" >> $GITHUB_STEP_SUMMARY
+        elif [ "$HEALTH_SCORE" -ge "$THRESHOLD" ]; then
+          echo "## 🟡 Good Health" >> $GITHUB_STEP_SUMMARY
+        elif [ "$HEALTH_SCORE" -ge 50 ]; then
+          echo "## 🟠 Fair Health - Needs Attention" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "## 🔴 Poor Health - Immediate Action Required!" >> $GITHUB_STEP_SUMMARY
+        fi
+        
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Overall Score: $HEALTH_SCORE/100** (Threshold: $THRESHOLD)" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        echo "### 📊 Key Metrics" >> $GITHUB_STEP_SUMMARY
+        echo "| Metric | Value |" >> $GITHUB_STEP_SUMMARY
+        echo "|--------|-------|" >> $GITHUB_STEP_SUMMARY
+        echo "| Outdated Dependencies | ${{ steps.dependencies.outputs.outdated-dependencies }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Security Vulnerabilities | ${{ steps.security.outputs.vulnerabilities }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Test Coverage | ${{ steps.coverage.outputs.coverage }}% |" >> $GITHUB_STEP_SUMMARY
+        echo "| Open Issues | ${{ steps.metrics.outputs.open-issues }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Contributors | ${{ steps.metrics.outputs.contributors }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Java Files | ${{ steps.metrics.outputs.java-files }} |" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        
+        echo "### 📋 Next Steps" >> $GITHUB_STEP_SUMMARY
+        if [ "${{ inputs.generate_issue }}" = "true" ]; then
+          echo "- ✅ Health report issue created/updated" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "- ℹ️  Issue generation was disabled" >> $GITHUB_STEP_SUMMARY
+        fi
+        echo "- 📁 Download detailed reports from workflow artifacts" >> $GITHUB_STEP_SUMMARY
+        echo "- 🔍 Review recommendations in the health report" >> $GITHUB_STEP_SUMMARY
+        
+        if [ "$HEALTH_SCORE" -lt "$THRESHOLD" ]; then
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "⚠️ **Health score is below threshold ($THRESHOLD). Consider addressing the issues identified.**" >> $GITHUB_STEP_SUMMARY
+        fi

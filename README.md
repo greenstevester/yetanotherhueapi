@@ -1,16 +1,17 @@
-YetAnotherHueApi - Java 17 Library for Philips Hue
+huevana - a modern Java Library for Philips Hue
 =====================================================
-[![Maven Central](https://img.shields.io/maven-central/v/io.github.greenstevester/yetanotherhueapi.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22io.github.greenstevester%22%20AND%20a:%22yetanotherhueapi%22)
-[![javadoc](https://javadoc.io/badge2/io.github.greenstevester/yetanotherhueapi/javadoc.svg)](https://javadoc.io/doc/io.github.greenstevester/yetanotherhueapi)
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.greenstevester/huevana.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22io.github.greenstevester%22%20AND%20a:%22huevana%22)
+[![javadoc](https://javadoc.io/badge2/io.github.greenstevester/huevana/javadoc.svg)](https://javadoc.io/doc/io.github.greenstevester/huevana)
 
 A modern Java 17 library for controlling Philips Hue lights. This library accesses
 the REST API of the Philips Hue Bridge directly without using the official Hue SDK.
 
 ## Prerequisites
 - **Java 17 or higher** (updated from Java 8 for modern language features)
+- GPG
 - Philips Hue Bridge (API v2 recommended)
 - This library works with Android projects using API level 24 or higher
-- Last confirmed compatible with Philips Hue Bridge API in June 2023
+- Last confirmed compatible with Philips Hue Bridge API in August 2025
 
 ----
 
@@ -27,7 +28,7 @@ Add the following dependency to your `pom.xml` file if you are using Maven:
 ```xml
 <dependency>
     <groupId>io.github.greenstevester</groupId>
-    <artifactId>yetanotherhueapi</artifactId>
+    <artifactId>huevana</artifactId>
     <version>4.0.0</version>
 </dependency>
 ```
@@ -40,7 +41,7 @@ repositories {
 }
 
 dependencies {
-  implementation 'io.github.greenstevester:yetanotherhueapi:4.0.0'
+  implementation 'io.github.greenstevester:huevana:4.0.0'
 }
 ```
 
@@ -49,8 +50,12 @@ dependencies {
 Here's a simple example to get you started - discover your bridge and turn on a light:
 
 ```java
-import io.github.greenstevester.yahueapi.v2.*;
-import io.github.greenstevester.yahueapi.discovery.*;
+import io.github.greenstevester.heuvana.HueBridge;
+import io.github.greenstevester.heuvana.HueBridgeConnectionBuilder;
+import io.github.greenstevester.heuvana.v2.Hue;
+import io.github.greenstevester.heuvana.discovery.HueBridgeDiscoveryService;
+import java.util.List;
+import java.util.concurrent.Future;
 
 // Discover your Hue Bridge
 Future<List<HueBridge>> bridgesFuture = new HueBridgeDiscoveryService()
@@ -74,11 +79,13 @@ First, import the classes from this library (and some others too):
 
 [//]: # (imports)
 ```java
-import io.github.greenstevester.yahueapi.Color;
-import io.github.greenstevester.yahueapi.HueBridge;
-import io.github.greenstevester.yahueapi.HueBridgeConnectionBuilder;
-import io.github.greenstevester.yahueapi.v2.*;
-import io.github.greenstevester.yahueapi.discovery.*;
+import io.github.greenstevester.heuvana.Color;
+import io.github.greenstevester.heuvana.HueBridge;
+import io.github.greenstevester.heuvana.HueBridgeConnectionBuilder;
+import io.github.greenstevester.heuvana.v2.Hue;
+import io.github.greenstevester.heuvana.v2.Light;
+import io.github.greenstevester.heuvana.v2.Group;
+import io.github.greenstevester.heuvana.discovery.HueBridgeDiscoveryService;
 
 import java.util.List;
 import java.util.Map;
@@ -142,7 +149,7 @@ final Hue hue = new Hue(bridgeIp, key);
 
 #### A note on setting colors
 
-When setting the color of a light or a room, one must use the `io.github.greenstevester.yahueapi.Color` class.
+When setting the color of a light or a room, one must use the `io.github.greenstevester.heuvana.Color` class.
 There exists several ways to initialize the class using its
 factory methods. `Color.of(int)` accepts a color code as an integer of the typical `0xRRGGBB` format.
 You may get an integer like this from, for example, from the `java.awt.Color#getRGB()` method.
