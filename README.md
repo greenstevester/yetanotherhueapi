@@ -1,12 +1,16 @@
-Yet Another Hue API
-===================
-[![Maven Central](https://img.shields.io/maven-central/v/io.github.zeroone3010/yetanotherhueapi.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22io.github.zeroone3010%22%20AND%20a:%22yetanotherhueapi%22)
-[![javadoc](https://javadoc.io/badge2/io.github.zeroone3010/yetanotherhueapi/javadoc.svg)](https://javadoc.io/doc/io.github.zeroone3010/yetanotherhueapi)
+YetAnotherHueApi - Java 17 Library for Philips Hue
+=====================================================
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.greenstevester/yetanotherhueapi.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22io.github.greenstevester%22%20AND%20a:%22yetanotherhueapi%22)
+[![javadoc](https://javadoc.io/badge2/io.github.greenstevester/yetanotherhueapi/javadoc.svg)](https://javadoc.io/doc/io.github.greenstevester/yetanotherhueapi)
 
-This is a Java 8 API for the Philips Hue lights.<sup>1</sup> It does not use the official Hue SDK but instead accesses
-the REST API of the Philips Hue Bridge directly. This library should also work with Android projects using
-[API level 24 or higher](https://developer.android.com/guide/topics/manifest/uses-sdk-element#ApiLevels). This library
-has last been confirmed to work with the Philips Hue Bridge API in June 2023.
+A modern Java 17 library for controlling Philips Hue lights. This library accesses
+the REST API of the Philips Hue Bridge directly without using the official Hue SDK. 
+
+## Prerequisites
+- **Java 17 or higher** (updated from Java 8 for modern language features)
+- Philips Hue Bridge (API v2 recommended)
+- This library works with Android projects using API level 24 or higher
+- Last confirmed compatible with Philips Hue Bridge API in June 2023
 
 ----
 
@@ -16,8 +20,55 @@ Make sure your dependency version is up to date.**
 
 ----
 
-Usage
------
+## Installation
+
+Add the following dependency to your `pom.xml` file if you are using Maven:
+
+```xml
+<dependency>
+    <groupId>io.github.greenstevester</groupId>
+    <artifactId>yetanotherhueapi</artifactId>
+    <version>4.0.0</version>
+</dependency>
+```
+
+For Gradle, add this to your `build.gradle` file:
+
+```gradle
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  implementation 'io.github.greenstevester:yetanotherhueapi:4.0.0'
+}
+```
+
+## Quick Start
+
+Here's a simple example to get you started - discover your bridge and turn on a light:
+
+```java
+import io.github.zeroone3010.yahueapi.v2.*;
+import io.github.zeroone3010.yahueapi.discovery.*;
+
+// Discover your Hue Bridge
+Future<List<HueBridge>> bridgesFuture = new HueBridgeDiscoveryService()
+    .discoverBridges(bridge -> System.out.println("Found bridge: " + bridge));
+
+List<HueBridge> bridges = bridgesFuture.get();
+String bridgeIp = bridges.get(0).getIp();
+
+// Connect to bridge (press button on bridge first!)
+String apiKey = new HueBridgeConnectionBuilder(bridgeIp)
+    .initializeApiConnection("MyHueApp").get();
+
+// Create Hue instance and control lights
+Hue hue = new Hue(bridgeIp, apiKey);
+hue.getRoomByName("Living Room").ifPresent(room -> room.turnOn());
+```
+
+## Usage
 
 First, import the classes from this library (and some others too):
 
@@ -225,30 +276,8 @@ hue.getRoomByName("Living Room").ifPresent(room -> foundLights.forEach(room::add
 If you do not wish to add the new lights into a room, they will still be accessible with the `hue.getLights()` method
 (along with all those lights that _are_ assigned into rooms).
 
-Including the library using Maven or Gradle
---------------------------------
 
-Add the following dependency to your pom.xml file if you are using Maven:
 
-```xml
-<dependency>
-    <groupId>io.github.zeroone3010</groupId>
-    <artifactId>yetanotherhueapi</artifactId>
-    <version>3.0.0-beta-2</version>
-</dependency>
-```
-
-This is how you add it to your build.gradle file when using Gradle:
-
-```gradle
-repositories {
-  mavenCentral()
-}
-
-dependencies {
-  implementation 'io.github.zeroone3010:yetanotherhueapi:3.0.0-beta-2'
-}
-```
 
 Scope and philosophy
 --------------------
@@ -270,14 +299,7 @@ Version history
 
 See [CHANGELOG.md](CHANGELOG.md).
 
-This project elsewhere
-----------------------
-* [Black Duck Open Hub](https://www.openhub.net/p/yetanotherhueapi)
-* [Code Climate](https://codeclimate.com/github/ZeroOne3010/yetanotherhueapi)
 
-Notes
------
+## Credits
 
-<sup>1</sup> Java 8, while old already, was chosen because it is easy to
-install and run it on a Raspberry Pi computer. For the installation instructions,
-see, for example, [this blog post](http://wp.brodzinski.net/raspberry-pi-3b/install-latest-java-8-raspbian/).
+This library was originally created by [ZeroOne3010](https://github.com/ZeroOne3010) and has been updated to Java 17 with modern language features and improved performance.
