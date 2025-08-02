@@ -114,7 +114,7 @@ jobs:
         cache: maven
 
     - name: Run integration tests
-      run:  sudo apt-get install gnupg && mvn $MAVEN_CLI_OPTS verify -DskipUnitTests=true
+      run: mvn $MAVEN_CLI_OPTS verify -DskipUnitTests=true
 
     - name: Upload integration test results
       if: always()
