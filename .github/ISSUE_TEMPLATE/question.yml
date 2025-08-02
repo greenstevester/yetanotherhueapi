@@ -9,17 +9,17 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for your question! 
-        
+        Thanks for your question!
+
         Please check the documentation and existing issues first.
-        
-        **Documentation**: [GitHub README](https://github.com/greenstevester/yetanotherhueapi#readme)
+
+        **Documentation**: [GitHub README](https://github.com/greenstevester/huevana#readme)
 
   - type: input
     id: library-version
     attributes:
       label: Library Version
-      description: Which version of YetAnotherHueApi are you using?
+      description: Which version of huevana are you using?
       placeholder: "e.g., 4.0.0"
     validations:
       required: true

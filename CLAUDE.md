@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-YetAnotherHueApi is a Java 17 library for controlling Philips Hue lights via the Bridge REST API. The project provides both legacy v1 API support (deprecated) and modern v2 API functionality for comprehensive Hue ecosystem interaction.
+huevana is a Java 17 library for controlling Philips Hue lights via the Bridge REST API. The project provides both legacy v1 API support (deprecated) and modern v2 API functionality for comprehensive Hue ecosystem interaction.
 
 ## Key Architecture Components
 

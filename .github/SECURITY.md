@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-We provide security updates for the following versions of YetAnotherHueApi:
+We provide security updates for the following versions of huevana:
 
 | Version | Supported          |
 | ------- | ------------------ |
@@ -12,7 +12,7 @@ We provide security updates for the following versions of YetAnotherHueApi:
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability in YetAnotherHueApi, please report it responsibly:
+If you discover a security vulnerability in huevana, please report it responsibly:
 
 ### How to Report
 
@@ -33,7 +33,7 @@ If you discover a security vulnerability in YetAnotherHueApi, please report it r
 
 ### Security Best Practices
 
-When using YetAnotherHueApi:
+When using huevana:
 
 1. **Use HTTPS**: Always connect to Hue Bridges using HTTPS (default since v2.5.0)
 2. **Validate Certificates**: Be cautious when accepting self-signed certificates
@@ -78,4 +78,4 @@ For security-related questions or concerns:
 - Email: stevengreensill@users.noreply.github.com
 - GPG Key: Available on request
 
-Thank you for helping keep YetAnotherHueApi secure!
+Thank you for helping keep huevana secure!

@@ -1,5 +1,5 @@
-# CODEOWNERS file for YetAnotherHueApi
-# 
+# CODEOWNERS file for huevana
+#
 # This file defines code ownership for the repository.
 # When a pull request is created, the code owners will be automatically
 # requested for review on the files they own.
@@ -24,30 +24,30 @@ docs/ @greenstevester
 .github/CODEOWNERS @greenstevester
 
 # Source code directories
-src/main/java/io/github/zeroone3010/yahueapi/ @greenstevester
+src/main/java/io/github/greenstevester/huevana/ @greenstevester
 
 # Core API classes - require careful review
-src/main/java/io/github/zeroone3010/yahueapi/HueBridge.java @greenstevester
-src/main/java/io/github/zeroone3010/yahueapi/HueBridgeConnectionBuilder.java @greenstevester
-src/main/java/io/github/zeroone3010/yahueapi/v2/Hue.java @greenstevester
+src/main/java/io/github/greenstevester/huevana/HueBridge.java @greenstevester
+src/main/java/io/github/greenstevester/huevana/HueBridgeConnectionBuilder.java @greenstevester
+src/main/java/io/github/greenstevester/huevana/v2/Hue.java @greenstevester
 
 # Security-related files - require additional scrutiny
-src/main/java/io/github/zeroone3010/yahueapi/SecureJsonFactory.java @greenstevester
-src/main/java/io/github/zeroone3010/yahueapi/SelfSignedHueBridgeCertificateAcceptingTrustManager.java @greenstevester
+src/main/java/io/github/greenstevester/huevana/SecureJsonFactory.java @greenstevester
+src/main/java/io/github/greenstevester/huevana/SelfSignedHueBridgeCertificateAcceptingTrustManager.java @greenstevester
 src/main/resources/hue_certificate.pem @greenstevester
 
 # Discovery mechanism - network-related code
-src/main/java/io/github/zeroone3010/yahueapi/discovery/ @greenstevester
+src/main/java/io/github/greenstevester/huevana/discovery/ @greenstevester
 
 # V2 API implementation
-src/main/java/io/github/zeroone3010/yahueapi/v2/ @greenstevester
+src/main/java/io/github/greenstevester/huevana/v2/ @greenstevester
 
 # Domain objects and data models
-src/main/java/io/github/zeroone3010/yahueapi/v2/domain/ @greenstevester
+src/main/java/io/github/greenstevester/huevana/v2/domain/ @greenstevester
 
 # Test files
 src/test/ @greenstevester
-src/test/java/io/github/zeroone3010/yahueapi/ @greenstevester
+src/test/java/io/github/greenstevester/huevana/ @greenstevester
 
 # Release and deployment configuration
 .github/workflows/ci.yml @greenstevester

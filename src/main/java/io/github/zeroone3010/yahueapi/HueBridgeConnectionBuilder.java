@@ -64,7 +64,7 @@ public class HueBridgeConnectionBuilder {
    */
   public CompletableFuture<String> initializeApiConnection(final String appName) {
     final Supplier<String> apiKeySupplier = () -> {
-      final String body = "{\"devicetype\":\"yetanotherhueapi#" + appName + "\"}";
+      final String body = "{\"devicetype\":\"huevana#" + appName + "\"}";
       final URL baseUrl;
       try {
         baseUrl = new URL(urlString + "/api");

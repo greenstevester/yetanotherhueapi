@@ -9,15 +9,15 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to fill out this bug report! 
-        
+        Thanks for taking the time to fill out this bug report!
+
         Please search existing issues first to avoid duplicates.
 
   - type: input
     id: library-version
     attributes:
       label: Library Version
-      description: Which version of YetAnotherHueApi are you using?
+      description: Which version of huevana are you using?
       placeholder: "e.g., 4.0.0"
     validations:
       required: true

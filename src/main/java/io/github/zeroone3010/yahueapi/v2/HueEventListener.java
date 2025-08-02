@@ -44,7 +44,7 @@ public interface HueEventListener {
    *
    * <p>Future versions of this library will have similar, more specific methods for
    * other types of events as well,
-   * <a href="https://github.com/ZeroOne3010/yetanotherhueapi">please give feedback on your needs</a>.
+   * <a href="https://github.com/ZeroOne3010/huevana">please give feedback on your needs</a>.
    * </p>
    *
    * @param events A List of events as received from the Bridge.
