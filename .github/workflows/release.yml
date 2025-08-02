@@ -155,6 +155,18 @@ jobs:
         VERSION="${{ needs.validate-release.outputs.version }}"
         mvn versions:set -DnewVersion=$VERSION -DgenerateBackupPoms=false
 
+    - name: Verify credentials are set
+      run: |
+        if [ -z "${{ secrets.OSSRH_USERNAME }}" ]; then
+          echo "ERROR: OSSRH_USERNAME secret is not set"
+          exit 1
+        fi
+        if [ -z "${{ secrets.OSSRH_TOKEN }}" ]; then
+          echo "ERROR: OSSRH_TOKEN secret is not set"
+          exit 1
+        fi
+        echo "✓ OSSRH credentials are configured"
+
     - name: Deploy to Maven Central
       env:
         MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
