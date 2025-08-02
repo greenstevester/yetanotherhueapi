@@ -1,7 +1,7 @@
-package io.github.zeroone3010.yahueapi.v2.domain;
+package io.github.greenstevester.yahueapi.v2.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import io.github.zeroone3010.yahueapi.v2.domain.update.EffectType;
+import io.github.greenstevester.yahueapi.v2.domain.update.EffectType;
 
 import java.util.List;
 

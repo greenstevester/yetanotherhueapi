@@ -1,4 +1,4 @@
-package io.github.zeroone3010.yahueapi.v2;
+package io.github.greenstevester.yahueapi.v2;
 
 import com.launchdarkly.eventsource.background.BackgroundEventSource;
 

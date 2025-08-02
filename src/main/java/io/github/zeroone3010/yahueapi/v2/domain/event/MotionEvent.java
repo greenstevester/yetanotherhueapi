@@ -1,6 +1,6 @@
-package io.github.zeroone3010.yahueapi.v2.domain.event;
+package io.github.greenstevester.yahueapi.v2.domain.event;
 
-import io.github.zeroone3010.yahueapi.v2.Device;
+import io.github.greenstevester.yahueapi.v2.Device;
 
 import java.util.UUID;
 

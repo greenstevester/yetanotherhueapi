@@ -1,4 +1,4 @@
-package io.github.zeroone3010.yahueapi;
+package io.github.greenstevester.yahueapi;
 
 import java.lang.reflect.Method;
 import java.util.Arrays;

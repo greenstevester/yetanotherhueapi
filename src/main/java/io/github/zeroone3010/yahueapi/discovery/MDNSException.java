@@ -1,4 +1,4 @@
-package io.github.zeroone3010.yahueapi.discovery;
+package io.github.greenstevester.yahueapi.discovery;
 
 final class MDNSException extends RuntimeException {
   public MDNSException(final String message) {

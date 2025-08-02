@@ -1,4 +1,4 @@
-package io.github.zeroone3010.yahueapi;
+package io.github.greenstevester.yahueapi;
 
 public final class HueApiException extends RuntimeException {
   public HueApiException(final Throwable cause) {

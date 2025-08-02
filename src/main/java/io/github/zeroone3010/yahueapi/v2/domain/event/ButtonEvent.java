@@ -1,8 +1,8 @@
-package io.github.zeroone3010.yahueapi.v2.domain.event;
+package io.github.greenstevester.yahueapi.v2.domain.event;
 
-import io.github.zeroone3010.yahueapi.v2.Button;
-import io.github.zeroone3010.yahueapi.v2.ButtonEventType;
-import io.github.zeroone3010.yahueapi.v2.Switch;
+import io.github.greenstevester.yahueapi.v2.Button;
+import io.github.greenstevester.yahueapi.v2.ButtonEventType;
+import io.github.greenstevester.yahueapi.v2.Switch;
 
 import java.util.UUID;
 

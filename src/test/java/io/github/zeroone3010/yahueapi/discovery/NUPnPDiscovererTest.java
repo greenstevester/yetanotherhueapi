@@ -1,12 +1,12 @@
-package io.github.zeroone3010.yahueapi.discovery;
+package io.github.greenstevester.yahueapi.discovery;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.github.tomakehurst.wiremock.WireMockServer;
-import io.github.zeroone3010.yahueapi.HueBridge;
-import io.github.zeroone3010.yahueapi.discovery.NUPnPDiscoverer.NUPnPDeserializer;
+import io.github.greenstevester.yahueapi.HueBridge;
+import io.github.greenstevester.yahueapi.discovery.NUPnPDiscoverer.NUPnPDeserializer;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

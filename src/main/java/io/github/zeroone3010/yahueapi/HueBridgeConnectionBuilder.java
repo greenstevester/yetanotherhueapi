@@ -1,9 +1,9 @@
-package io.github.zeroone3010.yahueapi;
+package io.github.greenstevester.yahueapi;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.zeroone3010.yahueapi.v2.HttpUtil;
-import io.github.zeroone3010.yahueapi.v2.domain.ApiInitializationStatus;
+import io.github.greenstevester.yahueapi.v2.HttpUtil;
+import io.github.greenstevester.yahueapi.v2.domain.ApiInitializationStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

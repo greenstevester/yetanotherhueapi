@@ -1,10 +1,10 @@
-package io.github.zeroone3010.yahueapi.discovery;
+package io.github.greenstevester.yahueapi.discovery;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import io.github.zeroone3010.yahueapi.HueBridge;
-import io.github.zeroone3010.yahueapi.SecureJsonFactory;
-import io.github.zeroone3010.yahueapi.v2.domain.BridgeConfig;
+import io.github.greenstevester.yahueapi.HueBridge;
+import io.github.greenstevester.yahueapi.SecureJsonFactory;
+import io.github.greenstevester.yahueapi.v2.domain.BridgeConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -84,7 +84,7 @@ public final class HueBridgeDiscoveryService {
    *                         try to use the NUPNP method in vain, but instead use just the MDNS method only.
    * @return A Future that is completed once the discovery processes have been finished.
    * As a result, the Future will hold a list of any and all Hue Bridges that were found,
-   * ready to be given to the {@link io.github.zeroone3010.yahueapi.v2.Hue#hueBridgeConnectionBuilder(String)}
+   * ready to be given to the {@link io.github.greenstevester.yahueapi.v2.Hue#hueBridgeConnectionBuilder(String)}
    * method for establishing an authorized connection with the Bridge. If the {@code bridgeDiscoverer} Consumer is
    * implemented, this result can be safely ignored.
    */
