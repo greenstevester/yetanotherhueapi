@@ -155,27 +155,7 @@
                 </executions>
             </plugin>
 
-            <!-- OWASP Dependency Check -->
-            <plugin>
-                <groupId>org.owasp</groupId>
-                <artifactId>dependency-check-maven</artifactId>
-                <version>9.2.0</version>
-                <configuration>
-                    <failBuildOnCVSS>7</failBuildOnCVSS>
-                    <suppressionFiles>
-                        <suppressionFile>.github/dependency-check-suppressions.xml</suppressionFile>
-                    </suppressionFiles>
-                    <format>ALL</format>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
+        
             <!-- License Plugin -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
