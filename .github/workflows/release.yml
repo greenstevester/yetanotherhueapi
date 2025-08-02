@@ -116,17 +116,6 @@ jobs:
     - name: Generate sources and javadoc
       run: mvn $MAVEN_CLI_OPTS source:jar javadoc:jar
 
-    - name: Sign artifacts
-      env:
-        MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-      run: |
-        for JAR in target/*.jar; do
-          mvn $MAVEN_CLI_OPTS gpg:sign-and-deploy-file \
-            -Dfile="$JAR" \
-            -DpomFile=pom.xml \
-            -DrepositoryId=huevana \
-            -Durl=https://github.com/greenstevester/huevana
-        done
 
 
     - name: Upload artifacts
@@ -136,8 +125,6 @@ jobs:
         path: |
           target/*.jar
           target/*.pom
-          target/*.jar.asc
-          target/*.pom.asc
         retention-days: 90
 
   deploy-maven:

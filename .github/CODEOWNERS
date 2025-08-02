@@ -24,30 +24,30 @@ docs/ @greenstevester
 .github/CODEOWNERS @greenstevester
 
 # Source code directories
-src/main/java/io/github/greenstevester/huevana/ @greenstevester
+src/main/java/io/github/greenstevester/heuvana/ @greenstevester
 
 # Core API classes - require careful review
-src/main/java/io/github/greenstevester/huevana/HueBridge.java @greenstevester
-src/main/java/io/github/greenstevester/huevana/HueBridgeConnectionBuilder.java @greenstevester
-src/main/java/io/github/greenstevester/huevana/v2/Hue.java @greenstevester
+src/main/java/io/github/greenstevester/heuvana/HueBridge.java @greenstevester
+src/main/java/io/github/greenstevester/heuvana/HueBridgeConnectionBuilder.java @greenstevester
+src/main/java/io/github/greenstevester/heuvana/v2/Hue.java @greenstevester
 
 # Security-related files - require additional scrutiny
-src/main/java/io/github/greenstevester/huevana/SecureJsonFactory.java @greenstevester
-src/main/java/io/github/greenstevester/huevana/SelfSignedHueBridgeCertificateAcceptingTrustManager.java @greenstevester
+src/main/java/io/github/greenstevester/heuvana/SecureJsonFactory.java @greenstevester
+src/main/java/io/github/greenstevester/heuvana/SelfSignedHueBridgeCertificateAcceptingTrustManager.java @greenstevester
 src/main/resources/hue_certificate.pem @greenstevester
 
 # Discovery mechanism - network-related code
-src/main/java/io/github/greenstevester/huevana/discovery/ @greenstevester
+src/main/java/io/github/greenstevester/heuvana/discovery/ @greenstevester
 
 # V2 API implementation
-src/main/java/io/github/greenstevester/huevana/v2/ @greenstevester
+src/main/java/io/github/greenstevester/heuvana/v2/ @greenstevester
 
 # Domain objects and data models
-src/main/java/io/github/greenstevester/huevana/v2/domain/ @greenstevester
+src/main/java/io/github/greenstevester/heuvana/v2/domain/ @greenstevester
 
 # Test files
 src/test/ @greenstevester
-src/test/java/io/github/greenstevester/huevana/ @greenstevester
+src/test/java/io/github/greenstevester/heuvana/ @greenstevester
 
 # Release and deployment configuration
 .github/workflows/ci.yml @greenstevester

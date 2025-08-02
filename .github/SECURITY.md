@@ -17,7 +17,7 @@ If you discover a security vulnerability in huevana, please report it responsibl
 ### How to Report
 
 1. **DO NOT** create a public GitHub issue for security vulnerabilities
-2. Email the maintainer directly at: [stevengreensill@users.noreply.github.com]
+2. Email the maintainer directly at: steve@greensill.net
 3. Include the following information:
    - Description of the vulnerability
    - Steps to reproduce the issue
@@ -75,7 +75,7 @@ We follow responsible disclosure practices:
 ### Security Contact
 
 For security-related questions or concerns:
-- Email: stevengreensill@users.noreply.github.com
+- Email: steve@greensill.net
 - GPG Key: Available on request
 
 Thank you for helping keep huevana secure!

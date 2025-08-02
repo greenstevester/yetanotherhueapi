@@ -10,6 +10,9 @@
         - A comment explaining why it's suppressed
         - An expiration date when the suppression should be reviewed
         - Specific CVE numbers when applicable
+        
+        IMPORTANT: Review all suppressions regularly (every 6 months minimum)
+        and update review dates accordingly. Remove suppressions when no longer needed.
     -->
     
     <!-- Example suppression for false positives -->
@@ -30,7 +33,7 @@
         The hue_certificate.pem file is a known Philips Hue Bridge certificate
         used for HTTPS communication. This is not a vulnerability but a necessary
         component for secure communication with Hue Bridges.
-        Review Date: 2025-02-01
+        Review Date: 2025-08-01
         ]]></notes>
         <filePath regex="true">.*hue_certificate\.pem$</filePath>
     </suppress>
@@ -39,7 +42,7 @@
     <suppress>
         <notes><![CDATA[
         WireMock vulnerabilities in test scope only - not shipped with production code
-        Review Date: 2025-02-01
+        Review Date: 2025-08-01
         ]]></notes>
         <packageUrl regex="true">^pkg:maven/com\.github\.tomakehurst/wiremock.*$</packageUrl>
         <vulnerabilityName regex="true">.*</vulnerabilityName>
