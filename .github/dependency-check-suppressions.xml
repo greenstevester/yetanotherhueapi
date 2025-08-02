@@ -44,7 +44,7 @@
         WireMock vulnerabilities in test scope only - not shipped with production code
         Review Date: 2025-08-01
         ]]></notes>
-        <packageUrl regex="true">^pkg:maven/com\.github\.tomakehurst/wiremock.*$</packageUrl>
+        <packageUrl regex="true">^pkg:maven/org\.wiremock/wiremock.*$</packageUrl>
         <vulnerabilityName regex="true">.*</vulnerabilityName>
     </suppress>
     
