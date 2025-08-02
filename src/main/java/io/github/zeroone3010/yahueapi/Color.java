@@ -9,16 +9,7 @@ import java.util.stream.Stream;
 /**
  * Use this class to define a color for a color light -- or for a room with color lights.
  */
-public final class Color {
-  private final float red;
-  private final float green;
-  private final float blue;
-
-  private Color(final int color) {
-    this(((color & 0xFF0000) >> 16) / 255f,
-        ((color & 0xFF00) >> 8) / 255f,
-        (color & 0xFF) / 255f);
-  }
+public record Color(float red, float green, float blue) {
 
   /**
    * Creates a {@code Color} object with the specified red, green, and blue parts.
@@ -30,15 +21,13 @@ public final class Color {
    * @throws IllegalArgumentException if the values are out of range
    * @since 3.0.0
    */
-  public Color(final float red, final float green, final float blue) {
+  public Color {
     if (Stream.of(red, green, blue).anyMatch(value -> !MathUtil.isInRange(value, 0f, 1f))) {
       throw new IllegalArgumentException("Color value out of range");
     }
-    this.red = red;
-    this.green = green;
-    this.blue = blue;
   }
 
+  // Legacy getters for backward compatibility
   public float getRed() {
     return red;
   }
@@ -86,7 +75,7 @@ public final class Color {
    * @return A {@code Color} object, as parsed from the three lowest bytes of the given integer
    */
   public static Color of(final int redGreenBlue) {
-    return new Color(redGreenBlue & 0xFFFFFF);
+    return fromInt(redGreenBlue & 0xFFFFFF);
   }
 
   /**
@@ -141,15 +130,15 @@ public final class Color {
       throw new IllegalArgumentException("null cannot be parsed as a color.");
     }
 
-    final Optional<Method> redMethod = findMethod(otherColorObject, "red", "getRed");
-    final Optional<Method> greenMethod = findMethod(otherColorObject, "green", "getGreen");
-    final Optional<Method> blueMethod = findMethod(otherColorObject, "blue", "getBlue");
+    var redMethod = findMethod(otherColorObject, "red", "getRed");
+    var greenMethod = findMethod(otherColorObject, "green", "getGreen");
+    var blueMethod = findMethod(otherColorObject, "blue", "getBlue");
 
-    if (!redMethod.isPresent() || !greenMethod.isPresent() || !blueMethod.isPresent()) {
+    if (redMethod.isEmpty() || greenMethod.isEmpty() || blueMethod.isEmpty()) {
       throw new IllegalArgumentException("The given object cannot be parsed as a color.");
     }
 
-    final Class<?> returnType = redMethod.get().getReturnType();
+    var returnType = redMethod.get().getReturnType();
     if (!returnType.equals(blueMethod.get().getReturnType())
         || !returnType.equals(greenMethod.get().getReturnType())) {
 
@@ -157,49 +146,34 @@ public final class Color {
     }
 
     try {
-      final Number red = (Number) redMethod.get().invoke(otherColorObject);
-      final Number green = (Number) greenMethod.get().invoke(otherColorObject);
-      final Number blue = (Number) blueMethod.get().invoke(otherColorObject);
+      var red = (Number) redMethod.get().invoke(otherColorObject);
+      var green = (Number) greenMethod.get().invoke(otherColorObject);
+      var blue = (Number) blueMethod.get().invoke(otherColorObject);
 
       if (red instanceof Integer) {
         return Color.of(red.intValue(), green.intValue(), blue.intValue());
       } else if (red instanceof Double || red instanceof Float) {
         return Color.of(red.floatValue(), green.floatValue(), blue.floatValue());
+      } else {
+        throw new IllegalArgumentException("Unsupported number type: " + red.getClass());
       }
     } catch (Exception e) {
       throw new IllegalArgumentException("The given object cannot be parsed as a color.", e);
     }
-    return null;
+  }
+
+  private static Color fromInt(final int color) {
+    return new Color(
+        ((color & 0xFF0000) >> 16) / 255f,
+        ((color & 0xFF00) >> 8) / 255f,
+        (color & 0xFF) / 255f
+    );
   }
 
   private static Optional<Method> findMethod(final Object target, final String name1, final String name2) {
-    final Method[] methods = target.getClass().getMethods();
+    var methods = target.getClass().getMethods();
     return Arrays.stream(methods).sequential()
         .filter(m -> name1.equals(m.getName()) || name2.equals(m.getName()))
         .findFirst();
-  }
-
-  @Override
-  public String toString() {
-    return "Color{" +
-        "red=" + red +
-        ", green=" + green +
-        ", blue=" + blue +
-        '}';
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    Color color = (Color) o;
-    return Float.compare(color.red, red) == 0 &&
-        Float.compare(color.green, green) == 0 &&
-        Float.compare(color.blue, blue) == 0;
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(red, green, blue);
   }
 }

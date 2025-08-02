@@ -50,8 +50,8 @@ public class HttpUtil {
 
   public static HttpsURLConnection getAnonymousUrlConnection(final URL url) {
     try {
-      final HttpsURLConnection urlConnection = (HttpsURLConnection) url.openConnection();
-      final SecureJsonFactory factory = (SecureJsonFactory) buildObjectMapper(url.getHost()).getFactory();
+      var urlConnection = (HttpsURLConnection) url.openConnection();
+      var factory = (SecureJsonFactory) buildObjectMapper(url.getHost()).getFactory();
       urlConnection.setSSLSocketFactory(factory.getSocketFactory());
       urlConnection.setHostnameVerifier(factory.getHostnameVerifier());
       return urlConnection;
@@ -67,20 +67,20 @@ public class HttpUtil {
                                   final String method) {
     try {
       logger.trace("Request body: " + body);
-      final HttpsURLConnection connection = urlConnector.apply(new URL(baseUrl.toString() + path));
+      var connection = urlConnector.apply(new URL(baseUrl.toString() + path));
       connection.setDoOutput(true);
       connection.setRequestMethod(method);
       connection.setRequestProperty("Host", connection.getURL().getHost());
       if (body != null) {
-        try (final OutputStream outputStream = connection.getOutputStream()) {
-          try (final OutputStreamWriter writer = new OutputStreamWriter(outputStream, UTF_8)) {
+        try (var outputStream = connection.getOutputStream()) {
+          try (var writer = new OutputStreamWriter(outputStream, UTF_8)) {
             writer.write(body);
             writer.flush();
           }
         }
       }
       connection.connect();
-      try (final BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
+      try (var reader = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {
         return reader.lines().collect(Collectors.joining("\n"));
       }
     } catch (final IOException e) {
