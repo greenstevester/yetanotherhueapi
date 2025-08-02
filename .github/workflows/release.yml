@@ -162,8 +162,7 @@ jobs:
         MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
       run: |
         mvn $MAVEN_CLI_OPTS clean deploy -DskipTests=true \
-          -Prelease \
-          -Dgpg.passphrase="${MAVEN_GPG_PASSPHRASE}"
+          -Prelease
 
   create-github-release:
     name: Create GitHub Release
