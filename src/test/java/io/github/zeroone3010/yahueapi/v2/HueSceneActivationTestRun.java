@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class HueSceneActivationTestRun {
 
-  public static final String ROOM_NAME = "Kirjastohuone";
+  public static final String ROOM_NAME = "Kitchen";
   public static final String SCENE_NAME = "Crocus";
 
   /**

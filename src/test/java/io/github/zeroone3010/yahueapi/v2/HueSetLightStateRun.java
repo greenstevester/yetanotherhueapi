@@ -7,8 +7,8 @@ import java.util.List;
 
 public class HueSetLightStateRun {
 
-  public static final String ROOM_NAME = "My Room";
-  public static final String LIGHT_NAME = "Lightstrip";
+  public static final String ROOM_NAME = "kitchen";
+  public static final String LIGHT_NAME = "kitchen1";
 
   /**
    * @param args IP address of the Bridge, API key
