@@ -98,7 +98,7 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-        server-id: ossrh
+        server-id: central
         server-username: MAVEN_USERNAME
         server-password: MAVEN_PASSWORD
         gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
@@ -143,7 +143,7 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-        server-id: ossrh
+        server-id: central
         server-username: MAVEN_USERNAME
         server-password: MAVEN_PASSWORD
         gpg-private-key: ${{ secrets.GPG_PRIVATE_KEY }}
@@ -157,20 +157,20 @@ jobs:
 
     - name: Verify credentials are set
       run: |
-        if [ -z "${{ secrets.OSSRH_USERNAME }}" ]; then
-          echo "ERROR: OSSRH_USERNAME secret is not set"
+        if [ -z "${{ secrets.CENTRAL_USERNAME }}" ]; then
+          echo "ERROR: CENTRAL_USERNAME secret is not set"
           exit 1
         fi
-        if [ -z "${{ secrets.OSSRH_TOKEN }}" ]; then
-          echo "ERROR: OSSRH_TOKEN secret is not set"
+        if [ -z "${{ secrets.CENTRAL_TOKEN }}" ]; then
+          echo "ERROR: CENTRAL_TOKEN secret is not set"
           exit 1
         fi
-        echo "✓ OSSRH credentials are configured"
+        echo "✓ Central Portal credentials are configured"
 
     - name: Deploy to Maven Central
       env:
-        MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
-        MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
+        MAVEN_USERNAME: ${{ secrets.CENTRAL_USERNAME }}
+        MAVEN_PASSWORD: ${{ secrets.CENTRAL_TOKEN }}
         MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
       run: |
         mvn $MAVEN_CLI_OPTS clean deploy -DskipTests=true \
