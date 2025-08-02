@@ -1,0 +1,64 @@
+# CODEOWNERS file for YetAnotherHueApi
+# 
+# This file defines code ownership for the repository.
+# When a pull request is created, the code owners will be automatically
+# requested for review on the files they own.
+#
+# More info: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Global ownership - default owner for everything in the repo
+* @greenstevester
+
+# Build and project configuration files
+pom.xml @greenstevester
+*.xml @greenstevester
+.gitignore @greenstevester
+
+# Documentation
+*.md @greenstevester
+docs/ @greenstevester
+
+# GitHub specific files
+.github/ @greenstevester
+.github/workflows/ @greenstevester
+.github/CODEOWNERS @greenstevester
+
+# Source code directories
+src/main/java/io/github/zeroone3010/yahueapi/ @greenstevester
+
+# Core API classes - require careful review
+src/main/java/io/github/zeroone3010/yahueapi/HueBridge.java @greenstevester
+src/main/java/io/github/zeroone3010/yahueapi/HueBridgeConnectionBuilder.java @greenstevester
+src/main/java/io/github/zeroone3010/yahueapi/v2/Hue.java @greenstevester
+
+# Security-related files - require additional scrutiny
+src/main/java/io/github/zeroone3010/yahueapi/SecureJsonFactory.java @greenstevester
+src/main/java/io/github/zeroone3010/yahueapi/SelfSignedHueBridgeCertificateAcceptingTrustManager.java @greenstevester
+src/main/resources/hue_certificate.pem @greenstevester
+
+# Discovery mechanism - network-related code
+src/main/java/io/github/zeroone3010/yahueapi/discovery/ @greenstevester
+
+# V2 API implementation
+src/main/java/io/github/zeroone3010/yahueapi/v2/ @greenstevester
+
+# Domain objects and data models
+src/main/java/io/github/zeroone3010/yahueapi/v2/domain/ @greenstevester
+
+# Test files
+src/test/ @greenstevester
+src/test/java/io/github/zeroone3010/yahueapi/ @greenstevester
+
+# Release and deployment configuration
+.github/workflows/ci.yml @greenstevester
+.github/workflows/security.yml @greenstevester
+.github/workflows/dependency-updates.yml @greenstevester
+
+# License and legal files
+LICENSE @greenstevester
+NOTICE @greenstevester
+
+# Configuration files
+*.yml @greenstevester
+*.yaml @greenstevester
+*.properties @greenstevester
